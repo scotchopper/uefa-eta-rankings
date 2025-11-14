@@ -47,10 +47,17 @@ class GitHubMobileProcessor:
         """Load current fixtures data"""
         if self.fixtures_file.exists():
             with open(self.fixtures_file, 'r', encoding='utf-8') as f:
-                return json.load(f)
+                data = json.load(f)
+                # Handle both list format and nested dict format
+                if isinstance(data, list):
+                    return data
+                elif isinstance(data, dict) and 'fixtures' in data:
+                    return data['fixtures']
+                else:
+                    return data
         else:
             print("⚠️ No fixtures data file found")
-            return []
+            return {}
     
     def process_mobile_results(self, results_file):
         """Process a single mobile results file"""
@@ -72,22 +79,44 @@ class GitHubMobileProcessor:
                 if fixture_id is None or home_score is None or away_score is None:
                     continue
                 
-                # Find and update the fixture
-                for fixture in fixtures:
-                    if fixture.get('id') == fixture_id:
-                        # Only update if not already set
+                # Handle both list and dict fixture formats
+                if isinstance(fixtures, dict):
+                    # Dict format: fixture_id is the key
+                    if str(fixture_id) in fixtures:
+                        fixture = fixtures[str(fixture_id)]
                         if fixture.get('home_score') is None:
                             fixture['home_score'] = int(home_score)
                             fixture['away_score'] = int(away_score)
                             fixture['result_updated'] = datetime.now().isoformat()
                             updates_made += 1
                             print(f"✅ Updated: {fixture['home_team']} {home_score}-{away_score} {fixture['away_team']}")
-                        break
+                else:
+                    # List format: search for matching id
+                    for fixture in fixtures:
+                        if fixture.get('id') == fixture_id:
+                            if fixture.get('home_score') is None:
+                                fixture['home_score'] = int(home_score)
+                                fixture['away_score'] = int(away_score)
+                                fixture['result_updated'] = datetime.now().isoformat()
+                                updates_made += 1
+                                print(f"✅ Updated: {fixture['home_team']} {home_score}-{away_score} {fixture['away_team']}")
+                            break
             
-            # Save updated fixtures
+            # Save updated fixtures (preserve original structure)
             if updates_made > 0:
+                # Load original structure to preserve format
+                with open(self.fixtures_file, 'r', encoding='utf-8') as f:
+                    original_data = json.load(f)
+                
+                # Update the appropriate section
+                if isinstance(original_data, dict) and 'fixtures' in original_data:
+                    original_data['fixtures'] = fixtures
+                    save_data = original_data
+                else:
+                    save_data = fixtures
+                
                 with open(self.fixtures_file, 'w', encoding='utf-8') as f:
-                    json.dump(fixtures, f, indent=2, ensure_ascii=False)
+                    json.dump(save_data, f, indent=2, ensure_ascii=False)
                 print(f"💾 Saved {updates_made} fixture updates")
             else:
                 print("ℹ️ No new results to process")
