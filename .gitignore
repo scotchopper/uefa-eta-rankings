@@ -45,9 +45,10 @@ logs/
 temp_*
 debug_*
 
-# Mobile exports (keep processed)
-mobile_results_*.json
-!processed_exports/
+# Mobile exports - allow in mobile/ folder for GitHub Actions triggers
+# mobile_results_*.json  # Commented out - need these for GitHub Actions
+!mobile/mobile_results_*.json
+!mobile_results_*.json
 
 # Excel temp files
 ~$*.xlsx

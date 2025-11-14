@@ -1,0 +1,11 @@
+{
+  "timestamp": "2025-11-14T12:00:00Z",
+  "source": "mobile_test",
+  "results": [
+    {
+      "fixture_id": 1,
+      "home_score": 2,
+      "away_score": 1
+    }
+  ]
+}
