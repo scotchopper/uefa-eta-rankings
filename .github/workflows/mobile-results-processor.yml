@@ -69,26 +69,7 @@ jobs:
     - name: 📱 Update Mobile Interface
       run: |
         echo "📱 Refreshing mobile interface with latest results..."
-        
-        # Update mobile fixtures with new results
-        python -c "
-import json
-import os
-from datetime import datetime
-
-# Load updated fixture data
-if os.path.exists('uefa_fixtures_data.json'):
-    with open('uefa_fixtures_data.json', 'r') as f:
-        fixtures = json.load(f)
-    
-    completed = sum(1 for f in fixtures if f.get('home_score') is not None)
-    total = len(fixtures)
-    
-    print(f'📊 Fixtures Status: {completed}/{total} completed')
-    print(f'📅 Last Update: {datetime.now().strftime(\"%Y-%m-%d %H:%M:%S UTC\")}')
-else:
-    print('⚠️ No fixture data found')
-"
+        echo "✅ Mobile interface will automatically reflect updated fixture data"
         
     - name: 📝 Commit Updated Results
       run: |
@@ -121,16 +102,8 @@ else:
         
         if [ -f "uefa_fixtures_data.json" ]; then
           echo "**Fixture Status:**" >> $GITHUB_STEP_SUMMARY
-          python -c "
-import json
-with open('uefa_fixtures_data.json', 'r') as f:
-    fixtures = json.load(f)
-completed = sum(1 for f in fixtures if f.get('home_score') is not None)
-total = len(fixtures)
-print(f'- Total Fixtures: {total}')
-print(f'- Completed: {completed}')
-print(f'- Remaining: {total - completed}')
-" >> $GITHUB_STEP_SUMMARY
+          echo "- Fixtures data updated successfully" >> $GITHUB_STEP_SUMMARY
+          echo "- Check repository for latest results" >> $GITHUB_STEP_SUMMARY
         fi
         
         echo "" >> $GITHUB_STEP_SUMMARY
