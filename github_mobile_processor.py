@@ -143,8 +143,22 @@ class GitHubMobileProcessor:
     def generate_github_summary(self, total_updates):
         """Generate GitHub Actions step summary"""
         fixtures = self.load_fixtures_data()
-        completed = sum(1 for f in fixtures if f.get('home_score') is not None)
-        total = len(fixtures)
+        
+        # Handle both dict and list formats
+        if isinstance(fixtures, dict):
+            fixture_list = list(fixtures.values())
+            total = len(fixtures)
+            completed = sum(1 for f in fixture_list if isinstance(f, dict) and f.get('home_score') is not None)
+            wcq_count = sum(1 for f in fixture_list if isinstance(f, dict) and f.get('competition') == 'World Cup Qualifier')
+            friendly_count = sum(1 for f in fixture_list if isinstance(f, dict) and f.get('competition') == 'Friendly')
+        else:
+            fixture_list = fixtures
+            total = len(fixtures)
+            completed = sum(1 for f in fixture_list if isinstance(f, dict) and f.get('home_score') is not None)
+            wcq_count = sum(1 for f in fixture_list if isinstance(f, dict) and f.get('competition') == 'World Cup Qualifier')
+            friendly_count = sum(1 for f in fixture_list if isinstance(f, dict) and f.get('competition') == 'Friendly')
+        
+        progress = (completed/total*100) if total > 0 else 0
         
         summary = f"""
 ## 📊 UEFA Mobile Processing Results
@@ -152,11 +166,11 @@ class GitHubMobileProcessor:
 **📅 Processing Time:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}
 **🔄 Updates Made:** {total_updates} fixtures
 **📊 Current Status:** {completed}/{total} fixtures completed
-**📈 Progress:** {(completed/total*100):.1f}% complete
+**📈 Progress:** {progress:.1f}% complete
 
 ### 🎯 Quick Stats
-- **World Cup Qualifiers:** {sum(1 for f in fixtures if f.get('competition') == 'World Cup Qualifier')} fixtures
-- **Friendlies:** {sum(1 for f in fixtures if f.get('competition') == 'Friendly')} fixtures
+- **World Cup Qualifiers:** {wcq_count} fixtures
+- **Friendlies:** {friendly_count} fixtures
 - **Remaining:** {total - completed} fixtures
 
 ---
