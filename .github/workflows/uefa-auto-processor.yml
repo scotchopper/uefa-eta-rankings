@@ -1,9 +1,9 @@
 name: UEFA Mobile Results Auto-Processor
 
 on:
-  # Run every hour
-  schedule:
-    - cron: '0 * * * *'  # Every hour at minute 0
+  # Run every hour (DISABLED - manual only for now)
+  # schedule:
+  #   - cron: '0 * * * *'  # Every hour at minute 0
   
   # Allow manual triggering
   workflow_dispatch:
@@ -92,7 +92,6 @@ jobs:
       run: |
         echo "📊 Generating FIFA ranking analysis..."
         # Try to run analysis scripts, but don't fail if dependencies are missing
-        python analyze_scotland.py || echo "⚠️ Analysis requires additional dependencies - skipping detailed analysis"
         python scotland_uefa_ranking_analysis.py || echo "⚠️ UEFA analysis requires additional dependencies - skipping"
         echo "✅ Core processing completed successfully"
         
