@@ -73,7 +73,7 @@ jobs:
         
     - name: 📝 Commit Updated Results
       run: |
-        git config --local user.email "action@github.com"
+        git config --local user.email "scotchopper@github.com"
         git config --local user.name "UEFA Mobile Processor"
         
         # Stage all updated files

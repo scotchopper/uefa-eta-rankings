@@ -413,7 +413,7 @@ def analyze_players():
     # Save results to files
     with open('players_after_1995.txt', 'w') as f:
         f.write(f"SCOTLAND INTERNATIONAL FOOTBALLERS (1+ CAPS) WITH FIRST CAP AFTER NOVEMBER 5, 1995\n")
-        f.write(f"Total: {len(after_cutoff)} players\n")
+        f.write(f"Total: {len(after_cutoff)} players\n")https://en.wikipedia.org/wiki/FIFA_Men%27s_World_Ranking
         f.write("=" * 80 + "\n\n")
         
         for i, player in enumerate(after_cutoff, 1):

@@ -11,7 +11,10 @@
       "competition": "World Cup Qualifiers",
       "importance": 25,
       "venue": "Paraeus",
-      "status": "scheduled"
+      "status": "scheduled",
+      "home_score": 2,
+      "away_score": 1,
+      "result_updated": "2025-11-14T05:57:13.554097"
     },
     "WCQC10": {
       "date": "2025-11-15",
