@@ -76,6 +76,11 @@ jobs:
           echo "has_results=false" >> $GITHUB_OUTPUT
         fi
         
+    - name: 🧪 Test GitHub Actions Setup
+      run: |
+        echo "🧪 Testing GitHub Actions environment..."
+        python test_github_actions.py
+        
     - name: 📱 Process Mobile Results  
       if: steps.check_results.outputs.has_results == 'true' || github.event.inputs.force_process == 'true'
       run: |
