@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UEFA Results - All 54 Fixtures</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+            margin: 0; padding: 10px; background: #f0f0f0; 
+        }
+        .header { 
+            background: linear-gradient(135deg, #2c3e50, #3498db); 
+            color: white; padding: 15px; border-radius: 10px; 
+            text-align: center; margin-bottom: 15px; 
+        }
+        .stats { 
+            display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; 
+            margin-bottom: 15px; 
+        }
+        .stat-card { 
+            background: white; padding: 12px 8px; border-radius: 8px; 
+            text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        }
+        .stat-number { font-size: 18px; font-weight: bold; color: #2c3e50; }
+        .stat-label { font-size: 10px; color: #666; margin-top: 3px; }
+        .controls-top { 
+            display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;
+        }
+        .filter-btn { 
+            background: #3498db; color: white; border: none; 
+            padding: 8px 12px; border-radius: 6px; cursor: pointer; 
+            font-size: 12px; font-weight: bold; flex: 1; min-width: 70px;
+        }
+        .filter-btn.active { background: #e74c3c; }
+        .search-box { 
+            width: 100%; padding: 10px; border: 1px solid #ddd; 
+            border-radius: 8px; margin-bottom: 15px; font-size: 14px;
+        }
+        .fixture { 
+            background: white; margin: 6px 0; padding: 12px; 
+            border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+            border-left: 4px solid #ddd;
+        }
+        .fixture.scotland { border-left-color: #005EB8; }
+        .fixture.completed { border-left-color: #27ae60; opacity: 0.8; }
+        .match-header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 6px; 
+        }
+        .match-title { font-size: 14px; font-weight: bold; color: #2c3e50; }
+        .match-date { font-size: 10px; color: #666; }
+        .match-details { 
+            font-size: 11px; color: #666; margin-bottom: 10px; 
+            text-align: center; 
+        }
+        .score-row { 
+            display: flex; justify-content: center; align-items: center; 
+            gap: 10px; margin: 10px 0; 
+        }
+        .team { text-align: center; flex: 1; }
+        .team-name { font-weight: bold; margin-bottom: 5px; font-size: 12px; }
+        .score-input { 
+            width: 35px; height: 35px; font-size: 16px; font-weight: bold; 
+            text-align: center; border: 2px solid #ddd; border-radius: 6px; 
+        }
+        .vs { font-size: 14px; font-weight: bold; color: #888; }
+        .save-btn { 
+            background: #27ae60; color: white; border: none; padding: 8px; 
+            border-radius: 6px; font-size: 12px; font-weight: bold; 
+            width: 100%; cursor: pointer; margin-top: 6px; 
+        }
+        .completed-result { 
+            background: #d4edda; color: #155724; padding: 8px; 
+            border-radius: 6px; font-size: 12px; font-weight: bold; 
+            text-align: center; margin-top: 6px; 
+        }
+        .controls { 
+            position: fixed; bottom: 0; left: 0; right: 0; 
+            background: white; padding: 12px; border-top: 1px solid #ddd;
+            display: flex; gap: 8px; z-index: 100;
+        }
+        .control-btn { 
+            flex: 1; background: #3498db; color: white; border: none; 
+            padding: 10px 6px; border-radius: 6px; cursor: pointer; 
+            font-size: 11px; font-weight: bold; 
+        }
+        .control-btn.success { background: #27ae60; }
+        .control-btn.danger { background: #e74c3c; }
+        .hidden { display: none; }
+        .saved-counter {
+            position: fixed; top: 15px; right: 15px; 
+            background: #e74c3c; color: white; padding: 6px 10px;
+            border-radius: 15px; font-size: 11px; font-weight: bold;
+            z-index: 50;
+        }
+        .bottom-spacer { height: 60px; }
+        .pagination { 
+            display: flex; justify-content: center; gap: 5px; 
+            margin: 15px 0; 
+        }
+        .page-btn { 
+            background: #3498db; color: white; border: none; 
+            padding: 8px 12px; border-radius: 4px; cursor: pointer; 
+            font-size: 12px; 
+        }
+        .page-btn.active { background: #e74c3c; }
+        .page-info { 
+            text-align: center; margin: 10px 0; 
+            font-size: 12px; color: #666; 
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>UEFA Results</h1>
+        <p>All 54 Fixtures - November 2025</p>
+    </div>
+    
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-number" id="total-count">54</div>
+            <div class="stat-label">Total</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="completed-count">11</div>
+            <div class="stat-label">Done</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="pending-count">43</div>
+            <div class="stat-label">Pending</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="saved-count">0</div>
+            <div class="stat-label">Saved</div>
+        </div>
+    </div>
+    
+    <div class="saved-counter" id="saved-counter" style="display: none;">
+        <span id="counter-text">0 saved</span>
+    </div>
+    
+    <div class="controls-top">
+        <button class="filter-btn active" onclick="filterFixtures('all')">All</button>
+        <button class="filter-btn" onclick="filterFixtures('scotland')">Scotland</button>
+        <button class="filter-btn" onclick="filterFixtures('pending')">Pending</button>
+        <button class="filter-btn" onclick="filterFixtures('completed')">Done</button>
+    </div>
+    
+    <input type="text" class="search-box" id="search" placeholder="Search teams..." onkeyup="searchFixtures()">
+    
+    <div class="page-info">
+        <span id="page-info">Page 1 of 4 (15 fixtures per page)</span>
+    </div>
+    
+    <div class="pagination" id="pagination-top">
+        <button class="page-btn active" onclick="showPage(1)">1</button>
+        <button class="page-btn" onclick="showPage(2)">2</button>
+        <button class="page-btn" onclick="showPage(3)">3</button>
+        <button class="page-btn" onclick="showPage(4)">4</button>
+    </div>
+    
+    <div id="fixtures-container">
+        <!-- Fixtures will be populated by JavaScript -->
+    </div>
+
+    <div class="pagination" id="pagination-bottom">
+        <button class="page-btn active" onclick="showPage(1)">1</button>
+        <button class="page-btn" onclick="showPage(2)">2</button>
+        <button class="page-btn" onclick="showPage(3)">3</button>
+        <button class="page-btn" onclick="showPage(4)">4</button>
+    </div>
+
+    <div class="bottom-spacer"></div>
+
+    <div class="controls">
+        <button class="control-btn success" onclick="exportResults()">Export All</button>
+        <button class="control-btn" onclick="exportScotland()">Scotland</button>
+        <button class="control-btn" onclick="showSaved()">View Saved</button>
+        <button class="control-btn danger" onclick="clearAll()">Clear</button>
+    </div>
+
+    <script>
+        let savedResults = JSON.parse(localStorage.getItem('uefa_all_results') || '[]');
+        let currentPage = 1;
+        let currentFilter = 'all';
+        let fixturesPerPage = 15;
+        let allFixtures = [];
+        
+        // All 54 fixtures data
+        const fixturesData = {
+            "WCQC09": { date: "2025-11-15", home_team: "Greece", away_team: "Scotland", home_code: "GRE", away_code: "SCO", competition: "WCQ", importance: 25, venue: "Piraeus", status: "scheduled" },
+            "WCQC11": { date: "2025-11-18", home_team: "Scotland", away_team: "Denmark", home_code: "SCO", away_code: "DEN", competition: "WCQ", importance: 25, venue: "Hampden Park", status: "scheduled" },
+            "WCQC10": { date: "2025-11-15", home_team: "Denmark", away_team: "Belarus", home_code: "DEN", away_code: "BLR", competition: "WCQ", importance: 25, venue: "Copenhagen", status: "scheduled" },
+            "WCQC12": { date: "2025-11-18", home_team: "Belarus", away_team: "Greece", home_code: "BLR", away_code: "GRE", competition: "WCQ", importance: 25, venue: "Copenhagen", status: "scheduled" },
+            "WCQA09": { date: "2025-11-14", home_team: "Luxembourg", away_team: "Germany", home_code: "LUX", away_code: "GER", competition: "WCQ", importance: 25, venue: "Luxembourg City", status: "scheduled" },
+            "WCQA10": { date: "2025-11-14", home_team: "Slovakia", away_team: "Northern Ireland", home_code: "SVK", away_code: "NIR", competition: "WCQ", importance: 25, venue: "Kosice", status: "scheduled" },
+            "WCQA11": { date: "2025-11-17", home_team: "Northern Ireland", away_team: "Luxembourg", home_code: "NIR", away_code: "LUX", competition: "WCQ", importance: 25, venue: "Belfast", status: "scheduled" },
+            "WCQA12": { date: "2025-11-17", home_team: "Germany", away_team: "Slovakia", home_code: "GER", away_code: "SVK", competition: "WCQ", importance: 25, venue: "Leipzig", status: "scheduled" },
+            "WCQB09": { date: "2025-11-15", home_team: "Slovenia", away_team: "Kosovo", home_code: "SVN", away_code: "KOS", competition: "WCQ", importance: 25, venue: "Ljubljana", status: "scheduled" },
+            "WCQB10": { date: "2025-11-15", home_team: "Switzerland", away_team: "Sweden", home_code: "SUI", away_code: "SWE", competition: "WCQ", importance: 25, venue: "Geneva", status: "scheduled" },
+            "WCQB11": { date: "2025-11-18", home_team: "Sweden", away_team: "Slovenia", home_code: "SWE", away_code: "SVN", competition: "WCQ", importance: 25, venue: "Solna", status: "scheduled" },
+            "WCQB12": { date: "2025-11-18", home_team: "Kosovo", away_team: "Switzerland", home_code: "KOS", away_code: "SUI", competition: "WCQ", importance: 25, venue: "Pristina", status: "scheduled" },
+            "WCQD09": { date: "2025-11-13", home_team: "Azerbaijan", away_team: "Iceland", home_code: "AZE", away_code: "ISL", competition: "WCQ", importance: 25, venue: "Baku", status: "completed" },
+            "WCQD10": { date: "2025-11-13", home_team: "France", away_team: "Ukraine", home_code: "FRA", away_code: "UKR", competition: "WCQ", importance: 25, venue: "Paris", status: "completed" },
+            "WCQD11": { date: "2025-11-16", home_team: "Ukraine", away_team: "Iceland", home_code: "UKR", away_code: "ISL", competition: "WCQ", importance: 25, venue: "Warsaw", status: "scheduled" },
+            "WCQD12": { date: "2025-11-16", home_team: "Azerbaijan", away_team: "France", home_code: "AZE", away_code: "FRA", competition: "WCQ", importance: 25, venue: "Baku", status: "scheduled" },
+            "WCQE09": { date: "2025-11-15", home_team: "Georgia", away_team: "Spain", home_code: "GEO", away_code: "ESP", competition: "WCQ", importance: 25, venue: "Tbilisi", status: "scheduled" },
+            "WCQE10": { date: "2025-11-15", home_team: "Türkiye", away_team: "Bulgaria", home_code: "TUR", away_code: "BUL", competition: "WCQ", importance: 25, venue: "Bursa", status: "scheduled" },
+            "WCQE11": { date: "2025-11-18", home_team: "Bulgaria", away_team: "Georgia", home_code: "BUL", away_code: "GEO", competition: "WCQ", importance: 25, venue: "Sofia", status: "scheduled" },
+            "WCQE12": { date: "2025-11-18", home_team: "Spain", away_team: "Türkiye", home_code: "ESP", away_code: "TUR", competition: "WCQ", importance: 25, venue: "Seville", status: "scheduled" },
+            "WCQF09": { date: "2025-11-13", home_team: "Armenia", away_team: "Hungary", home_code: "ARM", away_code: "HUN", competition: "WCQ", importance: 25, venue: "Yerevan", status: "completed" },
+            "WCQF10": { date: "2025-11-13", home_team: "Republic of Ireland", away_team: "Portugal", home_code: "IRL", away_code: "POR", competition: "WCQ", importance: 25, venue: "Dublin", status: "completed" },
+            "WCQF11": { date: "2025-11-16", home_team: "Portugal", away_team: "Armenia", home_code: "POR", away_code: "ARM", competition: "WCQ", importance: 25, venue: "Porto", status: "scheduled" },
+            "WCQF12": { date: "2025-11-16", home_team: "Hungary", away_team: "Republic of Ireland", home_code: "HUN", away_code: "IRL", competition: "WCQ", importance: 25, venue: "Budapest", status: "scheduled" },
+            "WCQG17": { date: "2025-11-14", home_team: "Finland", away_team: "Malta", home_code: "FIN", away_code: "MLT", competition: "WCQ", importance: 25, venue: "Helsinki", status: "scheduled" },
+            "WCQG18": { date: "2025-11-14", home_team: "Poland", away_team: "Netherlands", home_code: "POL", away_code: "NED", competition: "WCQ", importance: 25, venue: "Warsaw", status: "scheduled" },
+            "WCQG19": { date: "2025-11-17", home_team: "Malta", away_team: "Poland", home_code: "MLT", away_code: "POL", competition: "WCQ", importance: 25, venue: "Ta' Qali", status: "scheduled" },
+            "WCQG20": { date: "2025-11-17", home_team: "Netherlands", away_team: "Lithuania", home_code: "NED", away_code: "LTU", competition: "WCQ", importance: 25, venue: "Amsterdam", status: "scheduled" },
+            "WCQH17": { date: "2025-11-15", home_team: "Cyprus", away_team: "Austria", home_code: "CYP", away_code: "AUT", competition: "WCQ", importance: 25, venue: "Limassol", status: "scheduled" },
+            "WCQH18": { date: "2025-11-15", home_team: "Bosnia and Herzegovina", away_team: "Romania", home_code: "BIH", away_code: "ROU", competition: "WCQ", importance: 25, venue: "Zenica", status: "scheduled" },
+            "WCQH19": { date: "2025-11-18", home_team: "Romania", away_team: "San Marino", home_code: "ROU", away_code: "SMR", competition: "WCQ", importance: 25, venue: "Ploiesti", status: "scheduled" },
+            "WCQH20": { date: "2025-11-18", home_team: "Austria", away_team: "Bosnia and Herzegovina", home_code: "AUT", away_code: "BIH", competition: "WCQ", importance: 25, venue: "Vienna", status: "scheduled" },
+            "WCQI17": { date: "2025-11-13", home_team: "Norway", away_team: "Estonia", home_code: "NOR", away_code: "EST", competition: "WCQ", importance: 25, venue: "Oslo", status: "completed" },
+            "WCQI18": { date: "2025-11-13", home_team: "Moldova", away_team: "Italy", home_code: "MDA", away_code: "ITA", competition: "WCQ", importance: 25, venue: "Chisinau", status: "completed" },
+            "WCQI19": { date: "2025-11-16", home_team: "Italy", away_team: "Norway", home_code: "ITA", away_code: "NOR", competition: "WCQ", importance: 25, venue: "Milan", status: "scheduled" },
+            "WCQI20": { date: "2025-11-16", home_team: "Israel", away_team: "Moldova", home_code: "ISR", away_code: "MDA", competition: "WCQ", importance: 25, venue: "Chisinau", status: "scheduled" },
+            "WCQJ17": { date: "2025-11-15", home_team: "Kazakhstan", away_team: "Belgium", home_code: "KAZ", away_code: "BEL", competition: "WCQ", importance: 25, venue: "Astana", status: "scheduled" },
+            "WCQJ18": { date: "2025-11-15", home_team: "Liechtenstein", away_team: "Wales", home_code: "LIE", away_code: "WAL", competition: "WCQ", importance: 25, venue: "Vaduz", status: "scheduled" },
+            "WCQJ19": { date: "2025-11-18", home_team: "Wales", away_team: "North Macedonia", home_code: "WAL", away_code: "MKD", competition: "WCQ", importance: 25, venue: "Cardiff", status: "scheduled" },
+            "WCQJ20": { date: "2025-11-18", home_team: "Belgium", away_team: "Liechtenstein", home_code: "BEL", away_code: "LIE", competition: "WCQ", importance: 25, venue: "Liege", status: "scheduled" },
+            "WCQK17": { date: "2025-11-13", home_team: "Andorra", away_team: "Albania", home_code: "AND", away_code: "ALB", competition: "WCQ", importance: 25, venue: "Encamp", status: "completed" },
+            "WCQK18": { date: "2025-11-13", home_team: "England", away_team: "Serbia", home_code: "ENG", away_code: "SRB", competition: "WCQ", importance: 25, venue: "London", status: "completed" },
+            "WCQK19": { date: "2025-11-16", home_team: "Serbia", away_team: "Latvia", home_code: "SRB", away_code: "LVA", competition: "WCQ", importance: 25, venue: "Leskovac", status: "scheduled" },
+            "WCQK20": { date: "2025-11-16", home_team: "Albania", away_team: "England", home_code: "ALB", away_code: "ENG", competition: "WCQ", importance: 25, venue: "Tirana", status: "scheduled" },
+            "WCQL17": { date: "2025-11-14", home_team: "Croatia", away_team: "Faroe Islands", home_code: "CRO", away_code: "FRO", competition: "WCQ", importance: 25, venue: "Rijeka", status: "scheduled" },
+            "WCQL18": { date: "2025-11-14", home_team: "Gibraltar", away_team: "Montenegro", home_code: "GIB", away_code: "MNE", competition: "WCQ", importance: 25, venue: "Gibraltar", status: "scheduled" },
+            "WCQL19": { date: "2025-11-17", home_team: "Montenegro", away_team: "Croatia", home_code: "MNE", away_code: "CRO", competition: "WCQ", importance: 25, venue: "Podgorica", status: "scheduled" },
+            "WCQL20": { date: "2025-11-17", home_team: "Czechia", away_team: "Gibraltar", home_code: "CZE", away_code: "GIB", competition: "WCQ", importance: 25, venue: "Prague", status: "scheduled" },
+            "FR01": { date: "2025-11-17", home_team: "Finland", away_team: "Andorra", home_code: "FIN", away_code: "AND", competition: "Friendly", importance: 10, venue: "Tampere", status: "scheduled" },
+            "FR02": { date: "2025-11-13", home_team: "Lithuania", away_team: "Israel", home_code: "LTU", away_code: "ISR", competition: "Friendly", importance: 10, venue: "Kaunas", status: "completed" },
+            "FR03": { date: "2025-11-13", home_team: "Czechia", away_team: "San Marino", home_code: "CZE", away_code: "SMR", competition: "Friendly", importance: 10, venue: "Karvina", status: "completed" },
+            "FR04": { date: "2025-11-18", home_team: "Cyprus", away_team: "Estonia", home_code: "CYP", away_code: "EST", competition: "Friendly", importance: 10, venue: "Larnaca", status: "scheduled" },
+            "FR05": { date: "2025-11-13", home_team: "North Macedonia", away_team: "Latvia", home_code: "MKD", away_code: "LVA", competition: "Friendly", importance: 10, venue: "Skopje", status: "completed" },
+            "FR06": { date: "2025-11-18", home_team: "Faroe Islands", away_team: "Kazakhstan", home_code: "FRO", away_code: "KAZ", competition: "Friendly", importance: 10, venue: "Pula Croatia", status: "scheduled" }
+        };
+
+        function initializeFixtures() {
+            allFixtures = Object.keys(fixturesData).map(id => ({
+                id: id,
+                ...fixturesData[id]
+            }));
+            
+            // Sort fixtures: Scotland first, then by date
+            allFixtures.sort((a, b) => {
+                const aIsScotland = a.home_team === 'Scotland' || a.away_team === 'Scotland';
+                const bIsScotland = b.home_team === 'Scotland' || b.away_team === 'Scotland';
+                
+                if (aIsScotland && !bIsScotland) return -1;
+                if (!aIsScotland && bIsScotland) return 1;
+                
+                return new Date(a.date) - new Date(b.date);
+            });
+            
+            updateCounters();
+            showPage(1);
+        }
+        
+        function updateCounters() {
+            const completedCount = allFixtures.filter(f => f.status === 'completed').length;
+            const savedCount = savedResults.length;
+            
+            document.getElementById('completed-count').textContent = completedCount;
+            document.getElementById('pending-count').textContent = 54 - completedCount;
+            document.getElementById('saved-count').textContent = savedCount;
+            
+            const counter = document.getElementById('saved-counter');
+            const counterText = document.getElementById('counter-text');
+            
+            if (savedCount > 0) {
+                counter.style.display = 'block';
+                counterText.textContent = savedCount + ' saved';
+            } else {
+                counter.style.display = 'none';
+            }
+        }
+        
+        function getFilteredFixtures() {
+            let filtered = allFixtures;
+            
+            if (currentFilter === 'scotland') {
+                filtered = allFixtures.filter(f => 
+                    f.home_team === 'Scotland' || f.away_team === 'Scotland'
+                );
+            } else if (currentFilter === 'pending') {
+                filtered = allFixtures.filter(f => f.status === 'scheduled');
+            } else if (currentFilter === 'completed') {
+                filtered = allFixtures.filter(f => f.status === 'completed');
+            }
+            
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            if (searchTerm) {
+                filtered = filtered.filter(f => 
+                    f.home_team.toLowerCase().includes(searchTerm) ||
+                    f.away_team.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            return filtered;
+        }
+        
+        function showPage(page) {
+            currentPage = page;
+            const filtered = getFilteredFixtures();
+            const totalPages = Math.ceil(filtered.length / fixturesPerPage);
+            const startIndex = (page - 1) * fixturesPerPage;
+            const endIndex = startIndex + fixturesPerPage;
+            const pageFixtures = filtered.slice(startIndex, endIndex);
+            
+            const container = document.getElementById('fixtures-container');
+            container.innerHTML = '';
+            
+            pageFixtures.forEach(fixture => {
+                const fixtureDiv = createFixtureElement(fixture);
+                container.appendChild(fixtureDiv);
+            });
+            
+            // Update pagination
+            updatePagination(totalPages, filtered.length);
+            
+            // Update page info
+            document.getElementById('page-info').textContent = 
+                `Page ${page} of ${totalPages} (${filtered.length} fixtures${currentFilter !== 'all' ? ' filtered' : ''})`;
+        }
+        
+        function createFixtureElement(fixture) {
+            const div = document.createElement('div');
+            const isScotland = fixture.home_team === 'Scotland' || fixture.away_team === 'Scotland';
+            const isCompleted = fixture.status === 'completed';
+            
+            div.className = 'fixture' + (isScotland ? ' scotland' : '') + (isCompleted ? ' completed' : '');
+            div.setAttribute('data-teams', (fixture.home_team + ' ' + fixture.away_team).toLowerCase());
+            
+            const savedResult = savedResults.find(r => r.fixture_id === fixture.id);
+            
+            div.innerHTML = `
+                <div class="match-header">
+                    <div class="match-title">${fixture.home_team} vs ${fixture.away_team}</div>
+                    <div class="match-date">${fixture.date}</div>
+                </div>
+                <div class="match-details">${fixture.competition} (×${fixture.importance}) • ${fixture.venue}</div>
+                ${isCompleted ? `
+                    <div class="completed-result">Match Completed</div>
+                ` : `
+                    <div class="score-row">
+                        <div class="team">
+                            <div class="team-name">${fixture.home_team}</div>
+                            <input type="number" class="score-input" id="home_${fixture.id}" min="0" max="15" 
+                                   placeholder="0" value="${savedResult ? savedResult.home_goals : ''}">
+                        </div>
+                        <div class="vs">-</div>
+                        <div class="team">
+                            <div class="team-name">${fixture.away_team}</div>
+                            <input type="number" class="score-input" id="away_${fixture.id}" min="0" max="15" 
+                                   placeholder="0" value="${savedResult ? savedResult.away_goals : ''}">
+                        </div>
+                    </div>
+                    <button class="save-btn" onclick="saveResult('${fixture.id}', '${fixture.home_team}', '${fixture.away_team}')">
+                        ${savedResult ? 'Update Result' : 'Save Result'}
+                    </button>
+                `}
+            `;
+            
+            return div;
+        }
+        
+        function updatePagination(totalPages, totalFixtures) {
+            const paginationTop = document.getElementById('pagination-top');
+            const paginationBottom = document.getElementById('pagination-bottom');
+            
+            let paginationHTML = '';
+            for (let i = 1; i <= totalPages; i++) {
+                paginationHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="showPage(${i})">${i}</button>`;
+            }
+            
+            paginationTop.innerHTML = paginationHTML;
+            paginationBottom.innerHTML = paginationHTML;
+        }
+        
+        function filterFixtures(filter) {
+            currentFilter = filter;
+            currentPage = 1;
+            
+            // Update filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            showPage(1);
+        }
+        
+        function searchFixtures() {
+            currentPage = 1;
+            showPage(1);
+        }
+        
+        function saveResult(fixtureId, homeTeam, awayTeam) {
+            const homeGoals = document.getElementById('home_' + fixtureId).value;
+            const awayGoals = document.getElementById('away_' + fixtureId).value;
+            
+            if (homeGoals === '' || awayGoals === '') {
+                alert('Please enter both scores');
+                return;
+            }
+            
+            const result = {
+                fixture_id: fixtureId,
+                home_team: homeTeam,
+                away_team: awayTeam,
+                home_goals: parseInt(homeGoals),
+                away_goals: parseInt(awayGoals),
+                result_text: homeTeam + ' ' + homeGoals + '-' + awayGoals + ' ' + awayTeam,
+                timestamp: new Date().toISOString(),
+                is_scotland: homeTeam === 'Scotland' || awayTeam === 'Scotland'
+            };
+            
+            // Remove existing result for this fixture
+            savedResults = savedResults.filter(r => r.fixture_id !== fixtureId);
+            savedResults.push(result);
+            localStorage.setItem('uefa_all_results', JSON.stringify(savedResults));
+            
+            // Visual feedback
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = 'Saved!';
+            button.style.background = '#2ecc71';
+            setTimeout(() => {
+                button.innerHTML = 'Update Result';
+                button.style.background = '#27ae60';
+            }, 2000);
+            
+            updateCounters();
+        }
+        
+        function exportResults() {
+            if (savedResults.length === 0) {
+                alert('No results to export');
+                return;
+            }
+            
+            let text = 'UEFA Mobile Results - All Fixtures:\\n\\n';
+            savedResults.forEach(result => {
+                text += result.fixture_id + ': ' + result.result_text + '\\n';
+            });
+            text += '\\nTotal results: ' + savedResults.length + ' of 54\\n';
+            text += 'Generated: ' + new Date().toLocaleString() + '\\n\\n';
+            text += 'Processing Instructions:\\n';
+            text += '1. Run: python update_results.py\\n';
+            text += '2. Choose option 2 for each result\\n';  
+            text += '3. Run: python enhanced_team_range_analysis.py\\n';
+            
+            copyToClipboard(text, 'All results exported!');
+        }
+        
+        function exportScotland() {
+            const scotlandResults = savedResults.filter(r => r.is_scotland);
+            if (scotlandResults.length === 0) {
+                alert('No Scotland results to export');
+                return;
+            }
+            
+            let text = 'Scotland Results:\\n\\n';
+            scotlandResults.forEach(result => {
+                text += result.fixture_id + ': ' + result.result_text + '\\n';
+            });
+            text += '\\nScotland results: ' + scotlandResults.length + '\\n';
+            
+            copyToClipboard(text, 'Scotland results exported!');
+        }
+        
+        function showSaved() {
+            if (savedResults.length === 0) {
+                alert('No results saved yet');
+                return;
+            }
+            
+            let message = 'Saved Results (' + savedResults.length + '):\\n\\n';
+            savedResults.forEach(result => {
+                message += result.result_text + '\\n';
+            });
+            
+            alert(message);
+        }
+        
+        function copyToClipboard(text, successMessage) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert(successMessage);
+                });
+            } else {
+                alert('Copy this text:\\n\\n' + text);
+            }
+        }
+        
+        function clearAll() {
+            if (confirm('Clear all saved results?')) {
+                localStorage.removeItem('uefa_all_results');
+                savedResults = [];
+                updateCounters();
+                showPage(currentPage); // Refresh current page
+                alert('All results cleared!');
+            }
+        }
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeFixtures();
+        });
+        
+        window.onload = function() {
+            initializeFixtures();
+        };
+    </script>
+</body>
+</html>

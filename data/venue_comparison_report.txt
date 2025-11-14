@@ -1,0 +1,18 @@
+COMPLETE VENUE COMPARISON REPORT
+===================================
+
+Stewart's venues: 89
+Database venues: 96
+Common venues: 93
+Stewart-only: 1
+Database-only: 3
+
+VENUES IN STEWART'S LIST ONLY:
+------------------------------
+Saint-Denis
+
+VENUES IN DATABASE ONLY:
+-------------------------
+East Rutherford
+Netanya
+Tel Aviv

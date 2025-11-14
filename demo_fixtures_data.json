@@ -1,0 +1,132 @@
+{
+  "fixtures": {
+    "WCQ001": {
+      "date": "2025-11-14",
+      "home_team": "Scotland",
+      "away_team": "Greece",
+      "home_code": "SCO",
+      "away_code": null,
+      "home_points": 1504.2,
+      "away_points": 1500,
+      "competition": "World Cup Qualifiers",
+      "importance": 25,
+      "venue": "Hampden Park",
+      "status": "completed"
+    },
+    "WCQ002": {
+      "date": "2025-11-14",
+      "home_team": "Denmark",
+      "away_team": "Belarus",
+      "home_code": "DEN",
+      "away_code": null,
+      "home_points": 1641.02,
+      "away_points": 1500,
+      "competition": "World Cup Qualifiers",
+      "importance": 25,
+      "venue": "Copenhagen",
+      "status": "completed"
+    },
+    "WCQ003": {
+      "date": "2025-11-17",
+      "home_team": "Denmark",
+      "away_team": "Scotland",
+      "home_code": "DEN",
+      "away_code": "SCO",
+      "home_points": 1641.02,
+      "away_points": 1504.2,
+      "competition": "World Cup Qualifiers",
+      "importance": 25,
+      "venue": "Copenhagen",
+      "status": "scheduled"
+    },
+    "NL004": {
+      "date": "2025-11-15",
+      "home_team": "England",
+      "away_team": "Ireland",
+      "home_code": "ENG",
+      "away_code": "NOR",
+      "home_points": 1824.3,
+      "away_points": 1366.27,
+      "competition": "Nations League",
+      "importance": 15,
+      "venue": "Wembley",
+      "status": "completed"
+    },
+    "NL005": {
+      "date": "2025-11-16",
+      "home_team": "Spain",
+      "away_team": "Germany",
+      "home_code": "SPA",
+      "away_code": "GER",
+      "home_points": 1880.76,
+      "away_points": 1713.3,
+      "competition": "Nations League",
+      "importance": 15,
+      "venue": "Seville",
+      "status": "scheduled"
+    },
+    "WCQ006": {
+      "date": "2025-11-15",
+      "home_team": "Portugal",
+      "away_team": "Poland",
+      "home_code": "POR",
+      "away_code": "POL",
+      "home_points": 1778.0,
+      "away_points": 1523.84,
+      "competition": "World Cup Qualifiers",
+      "importance": 25,
+      "venue": "Lisbon",
+      "status": "scheduled"
+    },
+    "WCQ007": {
+      "date": "2025-11-18",
+      "home_team": "Netherlands",
+      "away_team": "Hungary",
+      "home_code": "NET",
+      "away_code": "HUN",
+      "home_points": 1759.96,
+      "away_points": 1504.92,
+      "competition": "World Cup Qualifiers",
+      "importance": 25,
+      "venue": "Amsterdam",
+      "status": "scheduled"
+    },
+    "FR008": {
+      "date": "2025-11-16",
+      "home_team": "France",
+      "away_team": "Italy",
+      "home_code": "FRA",
+      "away_code": "ITA",
+      "home_points": 1862.71,
+      "away_points": 1717.15,
+      "competition": "International Friendly",
+      "importance": 10,
+      "venue": "Paris",
+      "status": "scheduled"
+    }
+  },
+  "results": {
+    "WCQ001": {
+      "home_goals": 2,
+      "away_goals": 0,
+      "result": "H",
+      "notes": "Scotland secure important home win",
+      "completed_at": "2025-11-11T02:45:21.527739"
+    },
+    "WCQ002": {
+      "home_goals": 3,
+      "away_goals": 1,
+      "result": "H",
+      "notes": "Denmark win as expected",
+      "completed_at": "2025-11-11T02:45:21.528243"
+    },
+    "NL004": {
+      "home_goals": 1,
+      "away_goals": 1,
+      "result": "D",
+      "notes": "Tight derby ends in draw",
+      "completed_at": "2025-11-11T02:45:21.528507"
+    }
+  },
+  "last_updated": "2025-11-11T02:45:21.634193"
+}

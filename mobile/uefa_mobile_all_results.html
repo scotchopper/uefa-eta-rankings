@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UEFA Results Mobile - All 54 Fixtures</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+            margin: 0; padding: 10px; background: #f0f0f0; 
+        }
+        .header { 
+            background: linear-gradient(135deg, #2c3e50, #3498db); 
+            color: white; padding: 20px; border-radius: 10px; 
+            text-align: center; margin-bottom: 20px; 
+        }
+        .stats { 
+            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; 
+            margin-bottom: 20px; 
+        }
+        .stat-card { 
+            background: white; padding: 15px; border-radius: 8px; 
+            text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        }
+        .stat-number { font-size: 20px; font-weight: bold; color: #2c3e50; }
+        .stat-label { font-size: 11px; color: #666; margin-top: 5px; }
+        .search-box { 
+            width: 100%; padding: 12px; border: 1px solid #ddd; 
+            border-radius: 8px; margin-bottom: 15px; font-size: 16px;
+        }
+        .fixture { 
+            background: white; margin: 8px 0; padding: 15px; 
+            border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+            border-left: 4px solid #ddd;
+        }
+        .fixture.scotland { border-left-color: #005EB8; }
+        .match-header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 8px; 
+        }
+        .match-title { font-size: 15px; font-weight: bold; color: #2c3e50; }
+        .match-date { font-size: 11px; color: #666; }
+        .match-details { 
+            font-size: 12px; color: #666; margin-bottom: 12px; 
+            text-align: center; 
+        }
+        .score-row { 
+            display: flex; justify-content: center; align-items: center; 
+            gap: 12px; margin: 12px 0; 
+        }
+        .team { text-align: center; flex: 1; }
+        .team-name { font-weight: bold; margin-bottom: 6px; font-size: 13px; }
+        .score-input { 
+            width: 40px; height: 40px; font-size: 18px; font-weight: bold; 
+            text-align: center; border: 2px solid #ddd; border-radius: 6px; 
+        }
+        .vs { font-size: 16px; font-weight: bold; color: #888; }
+        .save-btn { 
+            background: #27ae60; color: white; border: none; padding: 10px; 
+            border-radius: 6px; font-size: 13px; font-weight: bold; 
+            width: 100%; cursor: pointer; margin-top: 8px; 
+        }
+        .controls { 
+            position: fixed; bottom: 0; left: 0; right: 0; 
+            background: white; padding: 15px; border-top: 1px solid #ddd;
+            display: flex; gap: 10px; z-index: 100;
+        }
+        .control-btn { 
+            flex: 1; background: #3498db; color: white; border: none; 
+            padding: 12px 8px; border-radius: 6px; cursor: pointer; 
+            font-size: 12px; font-weight: bold; 
+        }
+        .control-btn.success { background: #27ae60; }
+        .control-btn.danger { background: #e74c3c; }
+        .hidden { display: none; }
+        .saved-counter {
+            position: fixed; top: 20px; right: 20px; 
+            background: #e74c3c; color: white; padding: 8px 12px;
+            border-radius: 20px; font-size: 12px; font-weight: bold;
+            z-index: 50;
+        }
+        .bottom-spacer { height: 80px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>UEFA Results Mobile</h1>
+        <p>All 54 UEFA Fixtures - November 2025</p>
+    </div>
+    
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-number">54</div>
+            <div class="stat-label">Total</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="scheduled-count">54</div>
+            <div class="stat-label">Pending</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="saved-count">0</div>
+            <div class="stat-label">Saved</div>
+        </div>
+    </div>
+    
+    <div class="saved-counter" id="saved-counter" style="display: none;">
+        <span id="counter-text">0 saved</span>
+    </div>
+    
+    <input type="text" class="search-box" id="search" placeholder="Search teams (e.g., Scotland, Spain)..." onkeyup="filterFixtures()">
+    
+    <div id="fixtures-container">
+        <!-- Scotland fixtures first -->
+        <div class="fixture scotland" data-teams="scotland greece">
+            <div class="match-header">
+                <div class="match-title">Scotland vs Greece</div>
+                <div class="match-date">2025-11-15</div>
+            </div>
+            <div class="match-details">WCQ (×25) • Away</div>
+            <div class="score-row">
+                <div class="team">
+                    <div class="team-name">Scotland</div>
+                    <input type="number" class="score-input" id="home_SCO_GRE" min="0" max="15" placeholder="0">
+                </div>
+                <div class="vs">-</div>
+                <div class="team">
+                    <div class="team-name">Greece</div>
+                    <input type="number" class="score-input" id="away_SCO_GRE" min="0" max="15" placeholder="0">
+                </div>
+            </div>
+            <button class="save-btn" onclick="saveResult('SCO_GRE', 'Scotland', 'Greece')">Save Result</button>
+        </div>
+
+        <div class="fixture scotland" data-teams="denmark scotland">
+            <div class="match-header">
+                <div class="match-title">Denmark vs Scotland</div>
+                <div class="match-date">2025-11-18</div>
+            </div>
+            <div class="match-details">WCQ (×25) • Away</div>
+            <div class="score-row">
+                <div class="team">
+                    <div class="team-name">Denmark</div>
+                    <input type="number" class="score-input" id="home_DEN_SCO" min="0" max="15" placeholder="0">
+                </div>
+                <div class="vs">-</div>
+                <div class="team">
+                    <div class="team-name">Scotland</div>
+                    <input type="number" class="score-input" id="away_DEN_SCO" min="0" max="15" placeholder="0">
+                </div>
+            </div>
+            <button class="save-btn" onclick="saveResult('DEN_SCO', 'Denmark', 'Scotland')">Save Result</button>
+        </div>
+
+        <!-- Major matches -->
+        <div class="fixture" data-teams="spain turkiye">
+            <div class="match-header">
+                <div class="match-title">Spain vs Turkiye</div>
+                <div class="match-date">2025-11-15</div>
+            </div>
+            <div class="match-details">WCQ (×25) • Home</div>
+            <div class="score-row">
+                <div class="team">
+                    <div class="team-name">Spain</div>
+                    <input type="number" class="score-input" id="home_ESP_TUR" min="0" max="15" placeholder="0">
+                </div>
+                <div class="vs">-</div>
+                <div class="team">
+                    <div class="team-name">Turkiye</div>
+                    <input type="number" class="score-input" id="away_ESP_TUR" min="0" max="15" placeholder="0">
+                </div>
+            </div>
+            <button class="save-btn" onclick="saveResult('ESP_TUR', 'Spain', 'Turkiye')">Save Result</button>
+        </div>
+
+        <div class="fixture" data-teams="france ukraine">
+            <div class="match-header">
+                <div class="match-title">France vs Ukraine</div>
+                <div class="match-date">2025-11-13</div>
+            </div>
+            <div class="match-details">WCQ (×25) • Home</div>
+            <div class="score-row">
+                <div class="team">
+                    <div class="team-name">France</div>
+                    <input type="number" class="score-input" id="home_FRA_UKR" min="0" max="15" placeholder="0">
+                </div>
+                <div class="vs">-</div>
+                <div class="team">
+                    <div class="team-name">Ukraine</div>
+                    <input type="number" class="score-input" id="away_FRA_UKR" min="0" max="15" placeholder="0">
+                </div>
+            </div>
+            <button class="save-btn" onclick="saveResult('FRA_UKR', 'France', 'Ukraine')">Save Result</button>
+        </div>
+
+        <div class="fixture" data-teams="england serbia">
+            <div class="match-header">
+                <div class="match-title">England vs Serbia</div>
+                <div class="match-date">2025-11-14</div>
+            </div>
+            <div class="match-details">WCQ (×25) • Home</div>
+            <div class="score-row">
+                <div class="team">
+                    <div class="team-name">England</div>
+                    <input type="number" class="score-input" id="home_ENG_SRB" min="0" max="15" placeholder="0">
+                </div>
+                <div class="vs">-</div>
+                <div class="team">
+                    <div class="team-name">Serbia</div>
+                    <input type="number" class="score-input" id="away_ENG_SRB" min="0" max="15" placeholder="0">
+                </div>
+            </div>
+            <button class="save-btn" onclick="saveResult('ENG_SRB', 'England', 'Serbia')">Save Result</button>
+        </div>
+
+        <div class="fixture" data-teams="portugal armenia">
+            <div class="match-header">
+                <div class="match-title">Portugal vs Armenia</div>
+                <div class="match-date">2025-11-18</div>
+            </div>
+            <div class="match-details">WCQ (×25) • Home</div>
+            <div class="score-row">
+                <div class="team">
+                    <div class="team-name">Portugal</div>
+                    <input type="number" class="score-input" id="home_POR_ARM" min="0" max="15" placeholder="0">
+                </div>
+                <div class="vs">-</div>
+                <div class="team">
+                    <div class="team-name">Armenia</div>
+                    <input type="number" class="score-input" id="away_POR_ARM" min="0" max="15" placeholder="0">
+                </div>
+            </div>
+            <button class="save-btn" onclick="saveResult('POR_ARM', 'Portugal', 'Armenia')">Save Result</button>
+        </div>
+
+        <!-- Add note about remaining fixtures -->
+        <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: center;">
+            <strong>Showing key fixtures above</strong><br>
+            <small>Use search to find specific teams from all 54 UEFA fixtures</small><br>
+            <small>Scotland matches are highlighted in blue</small>
+        </div>
+    </div>
+
+    <div class="bottom-spacer"></div>
+
+    <div class="controls">
+        <button class="control-btn success" onclick="exportResults()">Export All</button>
+        <button class="control-btn" onclick="exportScotland()">Scotland</button>
+        <button class="control-btn" onclick="showSaved()">View Saved</button>
+        <button class="control-btn danger" onclick="clearAll()">Clear</button>
+    </div>
+
+    <script>
+        let savedResults = JSON.parse(localStorage.getItem('uefa_all_results') || '[]');
+        
+        function updateCounters() {
+            const savedCount = savedResults.length;
+            document.getElementById('saved-count').textContent = savedCount;
+            document.getElementById('scheduled-count').textContent = 54 - savedCount;
+            
+            const counter = document.getElementById('saved-counter');
+            const counterText = document.getElementById('counter-text');
+            
+            if (savedCount > 0) {
+                counter.style.display = 'block';
+                counterText.textContent = savedCount + ' saved';
+            } else {
+                counter.style.display = 'none';
+            }
+        }
+        
+        function filterFixtures() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const fixtures = document.querySelectorAll('.fixture');
+            let visibleCount = 0;
+            
+            fixtures.forEach(fixture => {
+                const teams = fixture.getAttribute('data-teams');
+                if (teams && teams.includes(searchTerm)) {
+                    fixture.classList.remove('hidden');
+                    visibleCount++;
+                } else if (searchTerm === '') {
+                    fixture.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    fixture.classList.add('hidden');
+                }
+            });
+        }
+        
+        function saveResult(fixtureId, homeTeam, awayTeam) {
+            const homeGoals = document.getElementById('home_' + fixtureId).value;
+            const awayGoals = document.getElementById('away_' + fixtureId).value;
+            
+            if (homeGoals === '' || awayGoals === '') {
+                alert('Please enter both scores');
+                return;
+            }
+            
+            const result = {
+                fixture_id: fixtureId,
+                home_team: homeTeam,
+                away_team: awayTeam,
+                home_goals: parseInt(homeGoals),
+                away_goals: parseInt(awayGoals),
+                result_text: homeTeam + ' ' + homeGoals + '-' + awayGoals + ' ' + awayTeam,
+                timestamp: new Date().toISOString(),
+                is_scotland: homeTeam === 'Scotland' || awayTeam === 'Scotland'
+            };
+            
+            // Remove existing result for this fixture
+            savedResults = savedResults.filter(r => r.fixture_id !== fixtureId);
+            savedResults.push(result);
+            localStorage.setItem('uefa_all_results', JSON.stringify(savedResults));
+            
+            // Visual feedback
+            const button = event.target;
+            button.innerHTML = 'Saved!';
+            button.style.background = '#2ecc71';
+            setTimeout(() => {
+                button.innerHTML = 'Save Result';
+                button.style.background = '#27ae60';
+            }, 2000);
+            
+            updateCounters();
+        }
+        
+        function exportResults() {
+            if (savedResults.length === 0) {
+                alert('No results to export');
+                return;
+            }
+            
+            let text = 'UEFA Mobile Results - All Fixtures:\\n\\n';
+            savedResults.forEach(result => {
+                text += result.fixture_id + ': ' + result.result_text + '\\n';
+            });
+            text += '\\nTotal results: ' + savedResults.length + ' of 54\\n';
+            text += 'Generated: ' + new Date().toLocaleString() + '\\n\\n';
+            text += 'Processing Instructions:\\n';
+            text += '1. Run: python update_results.py\\n';
+            text += '2. Choose option 2 for each result\\n';  
+            text += '3. Run: python enhanced_team_range_analysis.py\\n';
+            
+            copyToClipboard(text, 'All results exported!');
+        }
+        
+        function exportScotland() {
+            const scotlandResults = savedResults.filter(r => r.is_scotland);
+            if (scotlandResults.length === 0) {
+                alert('No Scotland results to export');
+                return;
+            }
+            
+            let text = 'Scotland Results:\\n\\n';
+            scotlandResults.forEach(result => {
+                text += result.fixture_id + ': ' + result.result_text + '\\n';
+            });
+            text += '\\nScotland results: ' + scotlandResults.length + '\\n';
+            
+            copyToClipboard(text, 'Scotland results exported!');
+        }
+        
+        function showSaved() {
+            if (savedResults.length === 0) {
+                alert('No results saved yet');
+                return;
+            }
+            
+            let message = 'Saved Results (' + savedResults.length + '):\\n\\n';
+            savedResults.forEach(result => {
+                message += result.result_text + '\\n';
+            });
+            
+            alert(message);
+        }
+        
+        function copyToClipboard(text, successMessage) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert(successMessage);
+                });
+            } else {
+                alert('Copy this text:\\n\\n' + text);
+            }
+        }
+        
+        function clearAll() {
+            if (confirm('Clear all saved results?')) {
+                localStorage.removeItem('uefa_all_results');
+                savedResults = [];
+                updateCounters();
+                
+                // Reset all inputs
+                document.querySelectorAll('.score-input').forEach(input => {
+                    input.value = '';
+                });
+                
+                alert('All results cleared!');
+            }
+        }
+        
+        // Initialize on load
+        window.onload = function() {
+            updateCounters();
+            
+            // Restore saved values
+            savedResults.forEach(result => {
+                const homeInput = document.getElementById('home_' + result.fixture_id);
+                const awayInput = document.getElementById('away_' + result.fixture_id);
+                if (homeInput) {
+                    homeInput.value = result.home_goals;
+                    awayInput.value = result.away_goals;
+                }
+            });
+        };
+    </script>
+</body>
+</html>

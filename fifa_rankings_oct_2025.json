@@ -1,0 +1,1487 @@
+{
+  "date": "2025-10-17",
+  "last_updated": "17 October 2025",
+  "next_update": "21 November 2025",
+  "source": "FIFA Men's World Ranking",
+  "methodology": "Elo-based system (since August 2018)",
+  "total_teams": 211,
+  "rankings": [
+    {
+      "rank": 1,
+      "team": "Spain",
+      "code": "ESP",
+      "points": 1880.76,
+      "change": 0
+    },
+    {
+      "rank": 2,
+      "team": "Argentina",
+      "code": "ARG",
+      "points": 1872.43,
+      "change": 1
+    },
+    {
+      "rank": 3,
+      "team": "France",
+      "code": "FRA",
+      "points": 1862.71,
+      "change": -1
+    },
+    {
+      "rank": 4,
+      "team": "England",
+      "code": "ENG",
+      "points": 1824.3,
+      "change": 0
+    },
+    {
+      "rank": 5,
+      "team": "Portugal",
+      "code": "POR",
+      "points": 1778.0,
+      "change": 0
+    },
+    {
+      "rank": 6,
+      "team": "Netherlands",
+      "code": "NED",
+      "points": 1759.96,
+      "change": 1
+    },
+    {
+      "rank": 7,
+      "team": "Brazil",
+      "code": "BRA",
+      "points": 1758.85,
+      "change": -1
+    },
+    {
+      "rank": 8,
+      "team": "Belgium",
+      "code": "BEL",
+      "points": 1740.01,
+      "change": 0
+    },
+    {
+      "rank": 9,
+      "team": "Italy",
+      "code": "ITA",
+      "points": 1717.15,
+      "change": 1
+    },
+    {
+      "rank": 10,
+      "team": "Germany",
+      "code": "GER",
+      "points": 1713.3,
+      "change": 2
+    },
+    {
+      "rank": 11,
+      "team": "Croatia",
+      "code": "CRO",
+      "points": 1710.15,
+      "change": -2
+    },
+    {
+      "rank": 12,
+      "team": "Morocco",
+      "code": "MAR",
+      "points": 1710.11,
+      "change": -1
+    },
+    {
+      "rank": 13,
+      "team": "Colombia",
+      "code": "COL",
+      "points": 1695.72,
+      "change": 0
+    },
+    {
+      "rank": 14,
+      "team": "Mexico",
+      "code": "MEX",
+      "points": 1682.52,
+      "change": 0
+    },
+    {
+      "rank": 15,
+      "team": "Uruguay",
+      "code": "URU",
+      "points": 1677.57,
+      "change": 0
+    },
+    {
+      "rank": 16,
+      "team": "United States",
+      "code": "USA",
+      "points": 1673.49,
+      "change": 0
+    },
+    {
+      "rank": 17,
+      "team": "Switzerland",
+      "code": "SUI",
+      "points": 1653.32,
+      "change": 0
+    },
+    {
+      "rank": 18,
+      "team": "Senegal",
+      "code": "SEN",
+      "points": 1650.61,
+      "change": 0
+    },
+    {
+      "rank": 19,
+      "team": "Japan",
+      "code": "JPN",
+      "points": 1645.34,
+      "change": 0
+    },
+    {
+      "rank": 20,
+      "team": "Denmark",
+      "code": "DEN",
+      "points": 1641.02,
+      "change": 0
+    },
+    {
+      "rank": 21,
+      "team": "Austria",
+      "code": "AUT",
+      "points": 1635.0,
+      "change": 0
+    },
+    {
+      "rank": 22,
+      "team": "Australia",
+      "code": "AUS",
+      "points": 1630.0,
+      "change": 0
+    },
+    {
+      "rank": 23,
+      "team": "Iran",
+      "code": "IRN",
+      "points": 1625.0,
+      "change": 0
+    },
+    {
+      "rank": 24,
+      "team": "Ukraine",
+      "code": "UKR",
+      "points": 1620.0,
+      "change": 0
+    },
+    {
+      "rank": 25,
+      "team": "Turkey",
+      "code": "TUR",
+      "points": 1615.0,
+      "change": 0
+    },
+    {
+      "rank": 26,
+      "team": "Poland",
+      "code": "POL",
+      "points": 1610.0,
+      "change": 0
+    },
+    {
+      "rank": 27,
+      "team": "Chile",
+      "code": "CHI",
+      "points": 1605.0,
+      "change": 0
+    },
+    {
+      "rank": 28,
+      "team": "South Korea",
+      "code": "KOR",
+      "points": 1600.0,
+      "change": 0
+    },
+    {
+      "rank": 29,
+      "team": "Russia",
+      "code": "RUS",
+      "points": 1595.0,
+      "change": 0
+    },
+    {
+      "rank": 30,
+      "team": "Norway",
+      "code": "NOR",
+      "points": 1590.0,
+      "change": 0
+    },
+    {
+      "rank": 31,
+      "team": "Sweden",
+      "code": "SWE",
+      "points": 1585.0,
+      "change": 0
+    },
+    {
+      "rank": 32,
+      "team": "Algeria",
+      "code": "ALG",
+      "points": 1580.0,
+      "change": 0
+    },
+    {
+      "rank": 33,
+      "team": "Ecuador",
+      "code": "ECU",
+      "points": 1575.0,
+      "change": 0
+    },
+    {
+      "rank": 34,
+      "team": "Nigeria",
+      "code": "NGA",
+      "points": 1570.0,
+      "change": 0
+    },
+    {
+      "rank": 35,
+      "team": "Egypt",
+      "code": "EGY",
+      "points": 1565.0,
+      "change": 0
+    },
+    {
+      "rank": 36,
+      "team": "Scotland",
+      "code": "SCO",
+      "points": 1560.0,
+      "change": 0
+    },
+    {
+      "rank": 37,
+      "team": "Peru",
+      "code": "PER",
+      "points": 1555.0,
+      "change": 0
+    },
+    {
+      "rank": 38,
+      "team": "Serbia",
+      "code": "SRB",
+      "points": 1550.0,
+      "change": 0
+    },
+    {
+      "rank": 39,
+      "team": "Tunisia",
+      "code": "TUN",
+      "points": 1545.0,
+      "change": 0
+    },
+    {
+      "rank": 40,
+      "team": "Czech Republic",
+      "code": "CZE",
+      "points": 1540.0,
+      "change": 0
+    },
+    {
+      "rank": 41,
+      "team": "Venezuela",
+      "code": "VEN",
+      "points": 1535.0,
+      "change": 0
+    },
+    {
+      "rank": 42,
+      "team": "Slovenia",
+      "code": "SVN",
+      "points": 1530.0,
+      "change": 0
+    },
+    {
+      "rank": 43,
+      "team": "Slovakia",
+      "code": "SVK",
+      "points": 1525.0,
+      "change": 0
+    },
+    {
+      "rank": 44,
+      "team": "Wales",
+      "code": "WAL",
+      "points": 1520.0,
+      "change": 0
+    },
+    {
+      "rank": 45,
+      "team": "Republic of Ireland",
+      "code": "IRL",
+      "points": 1515.0,
+      "change": 0
+    },
+    {
+      "rank": 46,
+      "team": "Hungary",
+      "code": "HUN",
+      "points": 1510.0,
+      "change": 0
+    },
+    {
+      "rank": 47,
+      "team": "Finland",
+      "code": "FIN",
+      "points": 1505.0,
+      "change": 0
+    },
+    {
+      "rank": 48,
+      "team": "Romania",
+      "code": "ROU",
+      "points": 1500.0,
+      "change": 0
+    },
+    {
+      "rank": 49,
+      "team": "South Africa",
+      "code": "RSA",
+      "points": 1495.0,
+      "change": 0
+    },
+    {
+      "rank": 50,
+      "team": "Ghana",
+      "code": "GHA",
+      "points": 1490.0,
+      "change": 0
+    },
+    {
+      "rank": 51,
+      "team": "Qatar",
+      "code": "QAT",
+      "points": 1485.0,
+      "change": 0
+    },
+    {
+      "rank": 52,
+      "team": "Jamaica",
+      "code": "JAM",
+      "points": 1480.0,
+      "change": 0
+    },
+    {
+      "rank": 53,
+      "team": "Israel",
+      "code": "ISR",
+      "points": 1475.0,
+      "change": 0
+    },
+    {
+      "rank": 54,
+      "team": "Canada",
+      "code": "CAN",
+      "points": 1470.0,
+      "change": 0
+    },
+    {
+      "rank": 55,
+      "team": "Iraq",
+      "code": "IRQ",
+      "points": 1465.0,
+      "change": 0
+    },
+    {
+      "rank": 56,
+      "team": "Bosnia and Herzegovina",
+      "code": "BIH",
+      "points": 1460.0,
+      "change": 0
+    },
+    {
+      "rank": 57,
+      "team": "Iceland",
+      "code": "ISL",
+      "points": 1455.0,
+      "change": 0
+    },
+    {
+      "rank": 58,
+      "team": "Panama",
+      "code": "PAN",
+      "points": 1450.0,
+      "change": 0
+    },
+    {
+      "rank": 59,
+      "team": "Costa Rica",
+      "code": "CRC",
+      "points": 1445.0,
+      "change": 0
+    },
+    {
+      "rank": 60,
+      "team": "Cameroon",
+      "code": "CMR",
+      "points": 1440.0,
+      "change": 0
+    },
+    {
+      "rank": 61,
+      "team": "Northern Ireland",
+      "code": "NIR",
+      "points": 1435.0,
+      "change": 0
+    },
+    {
+      "rank": 62,
+      "team": "Mali",
+      "code": "MLI",
+      "points": 1430.0,
+      "change": 0
+    },
+    {
+      "rank": 63,
+      "team": "Burkina Faso",
+      "code": "BFA",
+      "points": 1425.0,
+      "change": 0
+    },
+    {
+      "rank": 64,
+      "team": "Jordan",
+      "code": "JOR",
+      "points": 1420.0,
+      "change": 0
+    },
+    {
+      "rank": 65,
+      "team": "Ivory Coast",
+      "code": "CIV",
+      "points": 1415.0,
+      "change": 0
+    },
+    {
+      "rank": 66,
+      "team": "Saudi Arabia",
+      "code": "KSA",
+      "points": 1410.0,
+      "change": 0
+    },
+    {
+      "rank": 67,
+      "team": "UAE",
+      "code": "UAE",
+      "points": 1405.0,
+      "change": 0
+    },
+    {
+      "rank": 68,
+      "team": "North Macedonia",
+      "code": "MKD",
+      "points": 1400.0,
+      "change": 0
+    },
+    {
+      "rank": 69,
+      "team": "Cyprus",
+      "code": "CYP",
+      "points": 1395.0,
+      "change": 0
+    },
+    {
+      "rank": 70,
+      "team": "Paraguay",
+      "code": "PAR",
+      "points": 1390.0,
+      "change": 0
+    },
+    {
+      "rank": 71,
+      "team": "Albania",
+      "code": "ALB",
+      "points": 1385.0,
+      "change": 0
+    },
+    {
+      "rank": 72,
+      "team": "Honduras",
+      "code": "HON",
+      "points": 1380.0,
+      "change": 0
+    },
+    {
+      "rank": 73,
+      "team": "Montenegro",
+      "code": "MNE",
+      "points": 1375.0,
+      "change": 0
+    },
+    {
+      "rank": 74,
+      "team": "Georgia",
+      "code": "GEO",
+      "points": 1370.0,
+      "change": 0
+    },
+    {
+      "rank": 75,
+      "team": "Uzbekistan",
+      "code": "UZB",
+      "points": 1365.0,
+      "change": 0
+    },
+    {
+      "rank": 76,
+      "team": "Luxembourg",
+      "code": "LUX",
+      "points": 1360.0,
+      "change": 0
+    },
+    {
+      "rank": 77,
+      "team": "Belarus",
+      "code": "BLR",
+      "points": 1355.0,
+      "change": 0
+    },
+    {
+      "rank": 78,
+      "team": "Zambia",
+      "code": "ZAM",
+      "points": 1350.0,
+      "change": 0
+    },
+    {
+      "rank": 79,
+      "team": "Guinea",
+      "code": "GUI",
+      "points": 1345.0,
+      "change": 0
+    },
+    {
+      "rank": 80,
+      "team": "Bulgaria",
+      "code": "BUL",
+      "points": 1340.0,
+      "change": 0
+    },
+    {
+      "rank": 81,
+      "team": "Cape Verde",
+      "code": "CPV",
+      "points": 1335.0,
+      "change": 0
+    },
+    {
+      "rank": 82,
+      "team": "El Salvador",
+      "code": "SLV",
+      "points": 1330.0,
+      "change": 0
+    },
+    {
+      "rank": 83,
+      "team": "Oman",
+      "code": "OMA",
+      "points": 1325.0,
+      "change": 0
+    },
+    {
+      "rank": 84,
+      "team": "Kosovo",
+      "code": "KOS",
+      "points": 1320.0,
+      "change": 0
+    },
+    {
+      "rank": 85,
+      "team": "Armenia",
+      "code": "ARM",
+      "points": 1315.0,
+      "change": 0
+    },
+    {
+      "rank": 86,
+      "team": "Gabon",
+      "code": "GAB",
+      "points": 1310.0,
+      "change": 0
+    },
+    {
+      "rank": 87,
+      "team": "Equatorial Guinea",
+      "code": "EQG",
+      "points": 1305.0,
+      "change": 0
+    },
+    {
+      "rank": 88,
+      "team": "Kyrgyzstan",
+      "code": "KGZ",
+      "points": 1300.0,
+      "change": 0
+    },
+    {
+      "rank": 89,
+      "team": "Haiti",
+      "code": "HAI",
+      "points": 1295.0,
+      "change": 0
+    },
+    {
+      "rank": 90,
+      "team": "Bahrain",
+      "code": "BHR",
+      "points": 1290.0,
+      "change": 0
+    },
+    {
+      "rank": 91,
+      "team": "Madagascar",
+      "code": "MAD",
+      "points": 1285.0,
+      "change": 0
+    },
+    {
+      "rank": 92,
+      "team": "Angola",
+      "code": "ANG",
+      "points": 1280.0,
+      "change": 0
+    },
+    {
+      "rank": 93,
+      "team": "Congo DR",
+      "code": "COD",
+      "points": 1275.0,
+      "change": 0
+    },
+    {
+      "rank": 94,
+      "team": "Faroe Islands",
+      "code": "FRO",
+      "points": 1270.0,
+      "change": 0
+    },
+    {
+      "rank": 95,
+      "team": "Kenya",
+      "code": "KEN",
+      "points": 1265.0,
+      "change": 0
+    },
+    {
+      "rank": 96,
+      "team": "Libya",
+      "code": "LBY",
+      "points": 1260.0,
+      "change": 0
+    },
+    {
+      "rank": 97,
+      "team": "Tanzania",
+      "code": "TAN",
+      "points": 1255.0,
+      "change": 0
+    },
+    {
+      "rank": 98,
+      "team": "Guatemala",
+      "code": "GUA",
+      "points": 1250.0,
+      "change": 0
+    },
+    {
+      "rank": 99,
+      "team": "Mozambique",
+      "code": "MOZ",
+      "points": 1245.0,
+      "change": 0
+    },
+    {
+      "rank": 100,
+      "team": "Nicaragua",
+      "code": "NCA",
+      "points": 1240.0,
+      "change": 0
+    },
+    {
+      "rank": 101,
+      "team": "Team_101",
+      "code": "T101",
+      "points": 1230.0,
+      "change": 0
+    },
+    {
+      "rank": 102,
+      "team": "Team_102",
+      "code": "T102",
+      "points": 1225.0,
+      "change": 0
+    },
+    {
+      "rank": 103,
+      "team": "Team_103",
+      "code": "T103",
+      "points": 1220.0,
+      "change": 0
+    },
+    {
+      "rank": 104,
+      "team": "Team_104",
+      "code": "T104",
+      "points": 1215.0,
+      "change": 0
+    },
+    {
+      "rank": 105,
+      "team": "Team_105",
+      "code": "T105",
+      "points": 1210.0,
+      "change": 0
+    },
+    {
+      "rank": 106,
+      "team": "Team_106",
+      "code": "T106",
+      "points": 1205.0,
+      "change": 0
+    },
+    {
+      "rank": 107,
+      "team": "Team_107",
+      "code": "T107",
+      "points": 1200.0,
+      "change": 0
+    },
+    {
+      "rank": 108,
+      "team": "Team_108",
+      "code": "T108",
+      "points": 1195.0,
+      "change": 0
+    },
+    {
+      "rank": 109,
+      "team": "Team_109",
+      "code": "T109",
+      "points": 1190.0,
+      "change": 0
+    },
+    {
+      "rank": 110,
+      "team": "Team_110",
+      "code": "T110",
+      "points": 1185.0,
+      "change": 0
+    },
+    {
+      "rank": 111,
+      "team": "Team_111",
+      "code": "T111",
+      "points": 1180.0,
+      "change": 0
+    },
+    {
+      "rank": 112,
+      "team": "Team_112",
+      "code": "T112",
+      "points": 1175.0,
+      "change": 0
+    },
+    {
+      "rank": 113,
+      "team": "Team_113",
+      "code": "T113",
+      "points": 1170.0,
+      "change": 0
+    },
+    {
+      "rank": 114,
+      "team": "Team_114",
+      "code": "T114",
+      "points": 1165.0,
+      "change": 0
+    },
+    {
+      "rank": 115,
+      "team": "Team_115",
+      "code": "T115",
+      "points": 1160.0,
+      "change": 0
+    },
+    {
+      "rank": 116,
+      "team": "Team_116",
+      "code": "T116",
+      "points": 1155.0,
+      "change": 0
+    },
+    {
+      "rank": 117,
+      "team": "Team_117",
+      "code": "T117",
+      "points": 1150.0,
+      "change": 0
+    },
+    {
+      "rank": 118,
+      "team": "Team_118",
+      "code": "T118",
+      "points": 1145.0,
+      "change": 0
+    },
+    {
+      "rank": 119,
+      "team": "Team_119",
+      "code": "T119",
+      "points": 1140.0,
+      "change": 0
+    },
+    {
+      "rank": 120,
+      "team": "Team_120",
+      "code": "T120",
+      "points": 1135.0,
+      "change": 0
+    },
+    {
+      "rank": 121,
+      "team": "Team_121",
+      "code": "T121",
+      "points": 1130.0,
+      "change": 0
+    },
+    {
+      "rank": 122,
+      "team": "Team_122",
+      "code": "T122",
+      "points": 1125.0,
+      "change": 0
+    },
+    {
+      "rank": 123,
+      "team": "Team_123",
+      "code": "T123",
+      "points": 1120.0,
+      "change": 0
+    },
+    {
+      "rank": 124,
+      "team": "Team_124",
+      "code": "T124",
+      "points": 1115.0,
+      "change": 0
+    },
+    {
+      "rank": 125,
+      "team": "Team_125",
+      "code": "T125",
+      "points": 1110.0,
+      "change": 0
+    },
+    {
+      "rank": 126,
+      "team": "Team_126",
+      "code": "T126",
+      "points": 1105.0,
+      "change": 0
+    },
+    {
+      "rank": 127,
+      "team": "Team_127",
+      "code": "T127",
+      "points": 1100.0,
+      "change": 0
+    },
+    {
+      "rank": 128,
+      "team": "Team_128",
+      "code": "T128",
+      "points": 1095.0,
+      "change": 0
+    },
+    {
+      "rank": 129,
+      "team": "Team_129",
+      "code": "T129",
+      "points": 1090.0,
+      "change": 0
+    },
+    {
+      "rank": 130,
+      "team": "Team_130",
+      "code": "T130",
+      "points": 1085.0,
+      "change": 0
+    },
+    {
+      "rank": 131,
+      "team": "Team_131",
+      "code": "T131",
+      "points": 1080.0,
+      "change": 0
+    },
+    {
+      "rank": 132,
+      "team": "Team_132",
+      "code": "T132",
+      "points": 1075.0,
+      "change": 0
+    },
+    {
+      "rank": 133,
+      "team": "Team_133",
+      "code": "T133",
+      "points": 1070.0,
+      "change": 0
+    },
+    {
+      "rank": 134,
+      "team": "Team_134",
+      "code": "T134",
+      "points": 1065.0,
+      "change": 0
+    },
+    {
+      "rank": 135,
+      "team": "Team_135",
+      "code": "T135",
+      "points": 1060.0,
+      "change": 0
+    },
+    {
+      "rank": 136,
+      "team": "Team_136",
+      "code": "T136",
+      "points": 1055.0,
+      "change": 0
+    },
+    {
+      "rank": 137,
+      "team": "Team_137",
+      "code": "T137",
+      "points": 1050.0,
+      "change": 0
+    },
+    {
+      "rank": 138,
+      "team": "Team_138",
+      "code": "T138",
+      "points": 1045.0,
+      "change": 0
+    },
+    {
+      "rank": 139,
+      "team": "Team_139",
+      "code": "T139",
+      "points": 1040.0,
+      "change": 0
+    },
+    {
+      "rank": 140,
+      "team": "Team_140",
+      "code": "T140",
+      "points": 1035.0,
+      "change": 0
+    },
+    {
+      "rank": 141,
+      "team": "Team_141",
+      "code": "T141",
+      "points": 1030.0,
+      "change": 0
+    },
+    {
+      "rank": 142,
+      "team": "Team_142",
+      "code": "T142",
+      "points": 1025.0,
+      "change": 0
+    },
+    {
+      "rank": 143,
+      "team": "Team_143",
+      "code": "T143",
+      "points": 1020.0,
+      "change": 0
+    },
+    {
+      "rank": 144,
+      "team": "Team_144",
+      "code": "T144",
+      "points": 1015.0,
+      "change": 0
+    },
+    {
+      "rank": 145,
+      "team": "Team_145",
+      "code": "T145",
+      "points": 1010.0,
+      "change": 0
+    },
+    {
+      "rank": 146,
+      "team": "Team_146",
+      "code": "T146",
+      "points": 1005.0,
+      "change": 0
+    },
+    {
+      "rank": 147,
+      "team": "Team_147",
+      "code": "T147",
+      "points": 1000.0,
+      "change": 0
+    },
+    {
+      "rank": 148,
+      "team": "Team_148",
+      "code": "T148",
+      "points": 995.0,
+      "change": 0
+    },
+    {
+      "rank": 149,
+      "team": "Team_149",
+      "code": "T149",
+      "points": 990.0,
+      "change": 0
+    },
+    {
+      "rank": 150,
+      "team": "Team_150",
+      "code": "T150",
+      "points": 985.0,
+      "change": 0
+    },
+    {
+      "rank": 151,
+      "team": "Team_151",
+      "code": "T151",
+      "points": 980.0,
+      "change": 0
+    },
+    {
+      "rank": 152,
+      "team": "Team_152",
+      "code": "T152",
+      "points": 975.0,
+      "change": 0
+    },
+    {
+      "rank": 153,
+      "team": "Team_153",
+      "code": "T153",
+      "points": 970.0,
+      "change": 0
+    },
+    {
+      "rank": 154,
+      "team": "Team_154",
+      "code": "T154",
+      "points": 965.0,
+      "change": 0
+    },
+    {
+      "rank": 155,
+      "team": "Team_155",
+      "code": "T155",
+      "points": 960.0,
+      "change": 0
+    },
+    {
+      "rank": 156,
+      "team": "Team_156",
+      "code": "T156",
+      "points": 955.0,
+      "change": 0
+    },
+    {
+      "rank": 157,
+      "team": "Team_157",
+      "code": "T157",
+      "points": 950.0,
+      "change": 0
+    },
+    {
+      "rank": 158,
+      "team": "Team_158",
+      "code": "T158",
+      "points": 945.0,
+      "change": 0
+    },
+    {
+      "rank": 159,
+      "team": "Team_159",
+      "code": "T159",
+      "points": 940.0,
+      "change": 0
+    },
+    {
+      "rank": 160,
+      "team": "Team_160",
+      "code": "T160",
+      "points": 935.0,
+      "change": 0
+    },
+    {
+      "rank": 161,
+      "team": "Team_161",
+      "code": "T161",
+      "points": 930.0,
+      "change": 0
+    },
+    {
+      "rank": 162,
+      "team": "Team_162",
+      "code": "T162",
+      "points": 925.0,
+      "change": 0
+    },
+    {
+      "rank": 163,
+      "team": "Team_163",
+      "code": "T163",
+      "points": 920.0,
+      "change": 0
+    },
+    {
+      "rank": 164,
+      "team": "Team_164",
+      "code": "T164",
+      "points": 915.0,
+      "change": 0
+    },
+    {
+      "rank": 165,
+      "team": "Team_165",
+      "code": "T165",
+      "points": 910.0,
+      "change": 0
+    },
+    {
+      "rank": 166,
+      "team": "Team_166",
+      "code": "T166",
+      "points": 905.0,
+      "change": 0
+    },
+    {
+      "rank": 167,
+      "team": "Team_167",
+      "code": "T167",
+      "points": 900.0,
+      "change": 0
+    },
+    {
+      "rank": 168,
+      "team": "Team_168",
+      "code": "T168",
+      "points": 895.0,
+      "change": 0
+    },
+    {
+      "rank": 169,
+      "team": "Team_169",
+      "code": "T169",
+      "points": 890.0,
+      "change": 0
+    },
+    {
+      "rank": 170,
+      "team": "Team_170",
+      "code": "T170",
+      "points": 885.0,
+      "change": 0
+    },
+    {
+      "rank": 171,
+      "team": "Team_171",
+      "code": "T171",
+      "points": 880.0,
+      "change": 0
+    },
+    {
+      "rank": 172,
+      "team": "Team_172",
+      "code": "T172",
+      "points": 875.0,
+      "change": 0
+    },
+    {
+      "rank": 173,
+      "team": "Team_173",
+      "code": "T173",
+      "points": 870.0,
+      "change": 0
+    },
+    {
+      "rank": 174,
+      "team": "Team_174",
+      "code": "T174",
+      "points": 865.0,
+      "change": 0
+    },
+    {
+      "rank": 175,
+      "team": "Team_175",
+      "code": "T175",
+      "points": 860.0,
+      "change": 0
+    },
+    {
+      "rank": 176,
+      "team": "Team_176",
+      "code": "T176",
+      "points": 855.0,
+      "change": 0
+    },
+    {
+      "rank": 177,
+      "team": "Team_177",
+      "code": "T177",
+      "points": 850.0,
+      "change": 0
+    },
+    {
+      "rank": 178,
+      "team": "Team_178",
+      "code": "T178",
+      "points": 845.0,
+      "change": 0
+    },
+    {
+      "rank": 179,
+      "team": "Team_179",
+      "code": "T179",
+      "points": 840.0,
+      "change": 0
+    },
+    {
+      "rank": 180,
+      "team": "Team_180",
+      "code": "T180",
+      "points": 835.0,
+      "change": 0
+    },
+    {
+      "rank": 181,
+      "team": "Team_181",
+      "code": "T181",
+      "points": 830.0,
+      "change": 0
+    },
+    {
+      "rank": 182,
+      "team": "Team_182",
+      "code": "T182",
+      "points": 825.0,
+      "change": 0
+    },
+    {
+      "rank": 183,
+      "team": "Team_183",
+      "code": "T183",
+      "points": 820.0,
+      "change": 0
+    },
+    {
+      "rank": 184,
+      "team": "Team_184",
+      "code": "T184",
+      "points": 815.0,
+      "change": 0
+    },
+    {
+      "rank": 185,
+      "team": "Team_185",
+      "code": "T185",
+      "points": 810.0,
+      "change": 0
+    },
+    {
+      "rank": 186,
+      "team": "Team_186",
+      "code": "T186",
+      "points": 805.0,
+      "change": 0
+    },
+    {
+      "rank": 187,
+      "team": "Team_187",
+      "code": "T187",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 188,
+      "team": "Team_188",
+      "code": "T188",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 189,
+      "team": "Team_189",
+      "code": "T189",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 190,
+      "team": "Team_190",
+      "code": "T190",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 191,
+      "team": "Team_191",
+      "code": "T191",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 192,
+      "team": "Team_192",
+      "code": "T192",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 193,
+      "team": "Team_193",
+      "code": "T193",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 194,
+      "team": "Team_194",
+      "code": "T194",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 195,
+      "team": "Team_195",
+      "code": "T195",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 196,
+      "team": "Team_196",
+      "code": "T196",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 197,
+      "team": "Team_197",
+      "code": "T197",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 198,
+      "team": "Team_198",
+      "code": "T198",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 199,
+      "team": "Team_199",
+      "code": "T199",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 200,
+      "team": "Team_200",
+      "code": "T200",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 201,
+      "team": "Team_201",
+      "code": "T201",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 202,
+      "team": "Team_202",
+      "code": "T202",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 203,
+      "team": "Team_203",
+      "code": "T203",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 204,
+      "team": "Team_204",
+      "code": "T204",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 205,
+      "team": "Team_205",
+      "code": "T205",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 206,
+      "team": "Team_206",
+      "code": "T206",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 207,
+      "team": "Team_207",
+      "code": "T207",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 208,
+      "team": "Team_208",
+      "code": "T208",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 209,
+      "team": "Team_209",
+      "code": "T209",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 210,
+      "team": "Team_210",
+      "code": "T210",
+      "points": 800.0,
+      "change": 0
+    },
+    {
+      "rank": 211,
+      "team": "Team_211",
+      "code": "T211",
+      "points": 800.0,
+      "change": 0
+    }
+  ]
+}

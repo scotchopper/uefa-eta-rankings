@@ -1,0 +1,15 @@
+match_id,date,opposition,venue,home_away,competition,result,score_scotland,score_opposition,manager,scotland_scorers,bcd_reason
+1,2020-09-04,Israel,Hampden,H,Nations League,D,1,1,Steve Clarke,Christie,COVID-19 restrictions
+2,2020-09-07,Czechia,Olomouc,A,Nations League,W,2,1,Steve Clarke,"Dykes, Christie",COVID-19 restrictions
+3,2020-10-08,Israel,Hampden,H,European Championship Qualifier Play Offs,WP,0,0,Steve Clarke,,COVID-19 restrictions
+4,2020-10-11,Slovakia,Hampden,H,Nations League,W,1,0,Steve Clarke,Dykes,COVID-19 restrictions
+5,2020-10-14,Czechia,Hampden,H,Nations League,W,1,0,Steve Clarke,Fraser,COVID-19 restrictions
+6,2020-11-12,Serbia,Belgrade,A,European Championship Qualifier Play Offs,WP,1,1,Steve Clarke,Christie,COVID-19 restrictions
+7,2020-11-15,Slovakia,Trnava,A,Nations League,L,0,1,Steve Clarke,,COVID-19 restrictions
+8,2020-11-18,Israel,Netanya,A,Nations League,L,0,1,Steve Clarke,,COVID-19 restrictions
+9,2021-03-25,Austria,Hampden,H,World Cup Qualifiers,D,2,2,Steve Clarke,"Hanley, McGinn",COVID-19 restrictions
+10,2021-03-28,Israel,Tel Aviv,A,World Cup Qualifiers,D,1,1,Steve Clarke,Fraser,COVID-19 restrictions
+11,2021-03-31,Faroe Islands,Hampden,H,World Cup Qualifiers,W,4,0,Steve Clarke,"McGinn(2), Adams, Fraser",COVID-19 restrictions
+12,2021-06-02,Netherlands,Faro,N,Friendly,D,2,2,Steve Clarke,"Hendry J, Nisbet K",COVID-19 restrictions
+13,2021-06-06,Luxembourg,Luxembourg,A,Friendly,W,1,0,Steve Clarke,Adams,COVID-19 restrictions
+14,2025-09-08,Belarus,Zalaegerszeg,A,World Cup Qualifiers,W,2,0,Steve Clarke,"Adams, og",Belarus penalised for Russian invasion

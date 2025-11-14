@@ -1,0 +1,55 @@
+match_id,date,home_team,away_team,competition,importance,venue,home_goals,away_goals,notes,status
+WCQC09,2025-11-15,Greece,Scotland,World Cup Qualifiers,25,Paraeus,,,Home advantage crucial,scheduled
+WCQC10,2025-11-15,Denmark,Belarus,World Cup Qualifiers,25,Copenhagen,,,Denmark heavily favored,scheduled
+WCQC11,2025-11-18,Scotland,Denmark,World Cup Qualifiers,25,Hampden Park,,,Away challenge for Scotland,scheduled
+WCQC12,2025-11-18,Belarus,Greece,World Cup Qualifiers,25,Copenhagen,,,In Hungary,scheduled
+WCQA09,2025-11-14,Luxembourg,Germany,World Cup Qualifiers,25,Luxembourg City,,,Germany expected to dominate,scheduled
+WCQA10,2025-11-14,Slovakia,Northern Ireland,World Cup Qualifiers,25,Kosice,,,Tough match for Slovakia,scheduled
+WCQA11,2025-11-17,Northern Ireland,Luxembourg,World Cup Qualifiers,25,Belfast,,,Northern Ireland favored,scheduled
+WCQA12,2025-11-17,Germany,Slovakia,World Cup Qualifiers,25,Leipzig,,,Germany strong at home,scheduled
+WCQB09,2025-11-15,Slovenia,Kosovo,World Cup Qualifiers,25,Ljubljana,,,Highly competitive match,scheduled
+WCQB10,2025-11-15,Switzerland,Sweden,World Cup Qualifiers,25,Geneva,,,Switzerland slight favorite,scheduled
+WCQB11,2025-11-18,Sweden,Slovenia,World Cup Qualifiers,25,Solna,,,Sweden looking to secure win,scheduled
+WCQB12,2025-11-18,Kosovo,Switzerland,World Cup Qualifiers,25,Pristina,,,Switzerland favored,scheduled
+WCQD09,2025-11-13,Azerbaijan,Iceland,World Cup Qualifiers,25,Baku,,,Iceland expected to win,scheduled
+WCQD10,2025-11-13,France,Ukraine,World Cup Qualifiers,25,Paris,,,France strong at home,scheduled
+WCQD11,2025-11-16,Ukraine,Iceland,World Cup Qualifiers,25,Warsaw,,,Ukraine favored,scheduled
+WCQD12,2025-11-16,Azerbaijan,France,World Cup Qualifiers,25,Baku,,,France heavily favored,scheduled
+WCQE09,2025-11-15,Georgia,Spain,World Cup Qualifiers,25,Tbilisi,,,Spain expected to win,scheduled
+WCQE10,2025-11-15,Turkey,Bulgaria,World Cup Qualifiers,25,Bursa,,,Turkey slight favorite,scheduled
+WCQE11,2025-11-18,Bulgaria,Georgia,World Cup Qualifiers,25,Sofia,,,Competitive match,scheduled
+WCQE12,2025-11-18,Spain,Turkey,World Cup Qualifiers,25,Seville,,,Spain favored,scheduled
+WCQF09,2025-11-13,Armenia,Hungary,World Cup Qualifiers,25,Yerevan,,,Armenia looking to impress,scheduled
+WCQF10,2025-11-13,Republic of Ireland,Portugal,World Cup Qualifiers,25,Dublin,,,Republic of Ireland aiming for upset,scheduled
+WCQF11,2025-11-16,Portugal,Armenia,World Cup Qualifiers,25,Porto,,,Portugal strong at home,scheduled
+WCQF12,2025-11-16,Hungary,Republic of Ireland,World Cup Qualifiers,25,Budapest,,,Hungary favored,scheduled
+WCQG17,2025-11-14,Finland,Malta,World Cup Qualifiers,25,Helsinki,,,Finland expected to win,scheduled
+WCQG18,2025-11-14,Poland,Netherlands,World Cup Qualifiers,25,Warsaw,,,Netherlands strong favorite,scheduled
+WCQG19,2025-11-17,Malta,Poland,World Cup Qualifiers,25,Ta' Qali,,,Poland favored,scheduled
+WCQG20,2025-11-17,Netherlands,Lithuania,World Cup Qualifiers,25,Amsterdam,,,Netherlands expected to dominate,scheduled
+FR,2025-11-17,Finland,Andorra,Friendlies,10,Tampere,,,Low stakes friendly,scheduled
+FR,2025-11-13,Lithuania,Israel,Friendlies,10,Kaunas,,,Preparation match,scheduled
+WCQH17,2025-11-15,Cyprus,Austria,World Cup Qualifiers,25,Limassol,,,Austria favored,scheduled
+WCQH18,2025-11-15,Bosnia and Herzegovina,Romania,World Cup Qualifiers,25,Zenica,,,Tough match for Bosnia,scheduled
+WCQH19,2025-11-18,Romania,San Marino,World Cup Qualifiers,25,Ploiesti,,,Romania expected to win,scheduled
+WCQH20,2025-11-18,Austria,Bosnia and Herzegovina,World Cup Qualifiers,25,Vienna,,,Competitive fixture,scheduled
+FR,2025-11-13,Czech Republic,San Marino,Friendlies,10,Karvina,,,Easy win expected,scheduled
+FR,2025-11-18,Cyprus,Estonia,Friendlies,10,Larnaca,,,Low stakes friendly,scheduled
+WCQI17,2025-11-13,Norway,Estonia,World Cup Qualifiers,25,Oslo,,,Norway strong at home,scheduled
+WCQI18,2025-11-13,Moldova,Italy,World Cup Qualifiers,25,Chisinau,,,Italy favored,scheduled
+WCQI19,2025-11-16,Italy,Norway,World Cup Qualifiers,25,Milan,,,Italy expected to win,scheduled
+WCQI20,2025-11-16,Israel,Moldova,World Cup Qualifiers,25,Chisinau,,,Moldova looking for upset,scheduled
+WCQJ17,2025-11-15,Kazakhstan,Belgium,World Cup Qualifiers,25,Astana,,,Belgium strong favorite,scheduled
+WCQJ18,2025-11-15,Liechtenstein,Wales,World Cup Qualifiers,25,Vaduz,,,Wales expected to win,scheduled
+WCQJ19,2025-11-18,Wales,North Macedonia,World Cup Qualifiers,25,Cardiff,,,Wales favored,scheduled
+WCQJ20,2025-11-18,Belgium,Liechtenstein,World Cup Qualifiers,25,Liege,,,Belgium expected to dominate,scheduled
+FR,2025-11-13,North Macedonia,Latvia,Friendlies,10,Skopje,,,Preparation match,scheduled
+FR,2025-11-18,Faroe Islands,Kazakhstan,Friendlies,10,Pula Croatia,,,Low stakes friendly,scheduled
+WCQK17,2025-11-13,Andorra,Albania,World Cup Qualifiers,25,Encamp,,,Albania favored,scheduled
+WCQK18,2025-11-13,England,Serbia,World Cup Qualifiers,25,London,,,England strong at home,scheduled
+WCQK19,2025-11-16,Serbia,Latvia,World Cup Qualifiers,25,Leskovac,,,Serbia expected to win,scheduled
+WCQK20,2025-11-16,Albania,England,World Cup Qualifiers,25,Tirana,,,England favored,scheduled
+WCQL17,2025-11-14,Croatia,Faroe Islands,World Cup Qualifiers,25,Rijeka,,,Croatia expected to win,scheduled
+WCQL18,2025-11-14,Gibraltar,Montenegro,World Cup Qualifiers,25,Gibraltar,,,Montenegro favored,scheduled
+WCQL19,2025-11-17,Montenegro,Croatia,World Cup Qualifiers,25,Podgorica,,,Croatia strong favorite,scheduled
+WCQL20,2025-11-17,Czech Republic,Gibraltar,World Cup Qualifiers,25,Prague,,,Czech Republic expected to dominate,scheduled

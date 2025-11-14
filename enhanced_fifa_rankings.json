@@ -1,0 +1,181 @@
+{
+  "calculation_date": "2025-11-10",
+  "total_teams": 25,
+  "rankings": [
+    {
+      "rank": 1,
+      "team": "Spain",
+      "fifa_code": "ESP",
+      "points": 1892.83,
+      "confederation": "UEFA"
+    },
+    {
+      "rank": 2,
+      "team": "Argentina",
+      "fifa_code": "ARG",
+      "points": 1868.35,
+      "confederation": "CONMEBOL"
+    },
+    {
+      "rank": 3,
+      "team": "France",
+      "fifa_code": "FRA",
+      "points": 1850.64,
+      "confederation": "UEFA"
+    },
+    {
+      "rank": 4,
+      "team": "England",
+      "fifa_code": "ENG",
+      "points": 1818.69,
+      "confederation": "UEFA"
+    },
+    {
+      "rank": 5,
+      "team": "Portugal",
+      "fifa_code": "POR",
+      "points": 1782.35,
+      "confederation": "UEFA"
+    },
+    {
+      "rank": 6,
+      "team": "Brazil",
+      "fifa_code": "BRA",
+      "points": 1769.42,
+      "confederation": "CONMEBOL"
+    },
+    {
+      "rank": 7,
+      "team": "Netherlands",
+      "fifa_code": "NED",
+      "points": 1765.57,
+      "confederation": "UEFA"
+    },
+    {
+      "rank": 8,
+      "team": "Belgium",
+      "fifa_code": "BEL",
+      "points": 1744.19,
+      "confederation": "UEFA"
+    },
+    {
+      "rank": 9,
+      "team": "Italy",
+      "fifa_code": "ITA",
+      "points": 1717.06,
+      "confederation": "UEFA"
+    },
+    {
+      "rank": 10,
+      "team": "Germany",
+      "fifa_code": "GER",
+      "points": 1713.39,
+      "confederation": "UEFA"
+    },
+    {
+      "rank": 11,
+      "team": "Croatia",
+      "fifa_code": "CRO",
+      "points": 1710.15,
+      "confederation": "UEFA"
+    },
+    {
+      "rank": 12,
+      "team": "Morocco",
+      "fifa_code": "MAR",
+      "points": 1705.76,
+      "confederation": "CAF"
+    },
+    {
+      "rank": 13,
+      "team": "Colombia",
+      "fifa_code": "COL",
+      "points": 1699.8,
+      "confederation": "CONMEBOL"
+    },
+    {
+      "rank": 14,
+      "team": "Mexico",
+      "fifa_code": "MEX",
+      "points": 1682.52,
+      "confederation": "CONCACAF"
+    },
+    {
+      "rank": 15,
+      "team": "United States",
+      "fifa_code": "USA",
+      "points": 1673.49,
+      "confederation": "CONCACAF"
+    },
+    {
+      "rank": 16,
+      "team": "Uruguay",
+      "fifa_code": "URU",
+      "points": 1667.0,
+      "confederation": "CONMEBOL"
+    },
+    {
+      "rank": 17,
+      "team": "Senegal",
+      "fifa_code": "SEN",
+      "points": 1650.61,
+      "confederation": "CAF"
+    },
+    {
+      "rank": 18,
+      "team": "Switzerland",
+      "fifa_code": "SUI",
+      "points": 1649.14,
+      "confederation": "UEFA"
+    },
+    {
+      "rank": 19,
+      "team": "Chile",
+      "fifa_code": "CHI",
+      "points": 1647.68,
+      "confederation": "CONMEBOL"
+    },
+    {
+      "rank": 20,
+      "team": "Japan",
+      "fifa_code": "JPN",
+      "points": 1645.34,
+      "confederation": "AFC"
+    },
+    {
+      "rank": 21,
+      "team": "Denmark",
+      "fifa_code": "DEN",
+      "points": 1641.02,
+      "confederation": "UEFA"
+    },
+    {
+      "rank": 22,
+      "team": "Iran",
+      "fifa_code": "IRN",
+      "points": 1629.11,
+      "confederation": "AFC"
+    },
+    {
+      "rank": 23,
+      "team": "Scotland",
+      "fifa_code": "SCO",
+      "points": 1628.21,
+      "confederation": "UEFA"
+    },
+    {
+      "rank": 24,
+      "team": "Peru",
+      "fifa_code": "PER",
+      "points": 1603.42,
+      "confederation": "CONMEBOL"
+    },
+    {
+      "rank": 25,
+      "team": "South Korea",
+      "fifa_code": "KOR",
+      "points": 1599.84,
+      "confederation": "AFC"
+    }
+  ]
+}

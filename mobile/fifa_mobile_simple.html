@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA Rankings Mobile</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 15px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .scotland-section {
+            background: #e3f2fd;
+            border: 2px solid #005EB8;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .scotland-section h2 {
+            color: #005EB8;
+            margin-top: 0;
+        }
+        .stats p, .fixtures p, .movement p {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+        .team-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #ddd;
+        }
+        .team-card.scotland {
+            background: #e3f2fd;
+            border-left-color: #005EB8;
+        }
+        .team-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .team-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .ranks {
+            font-size: 12px;
+            color: #666;
+        }
+        .team-stats {
+            color: #555;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            margin-top: 30px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏆 FIFA Rankings</h1>
+        <p>UEFA Teams Analysis - November 2025</p>
+    </div>
+    
+    
+        <div class="scotland-section">
+            <h2>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland Analysis</h2>
+            <div class="stats">
+                <p><strong>Current:</strong> FIFA #38 / UEFA #20</p>
+                <p><strong>Points:</strong> 1504.20</p>
+                <p><strong>Best Case:</strong> 1531.22 (+27.02)</p>
+                <p><strong>Worst Case:</strong> 1481.81 (-22.39)</p>
+                <p><strong>Range:</strong> 49.41 points</p>
+            </div>
+        
+            <div class="fixtures">
+                <h3>Fixtures:</h3>
+                <p>• vs Greece (Away)</p>
+                <p>• vs Denmark (Home)</p>
+            </div>
+            
+            <div class="movement">
+                <h3>Potential Movement:</h3>
+                <p><strong>UEFA Rank:</strong> #15 to #26</p>
+                <p><strong>Max Gain:</strong> 5 places up</p>
+                <p><strong>Max Loss:</strong> 6 places down</p>
+            </div>
+            </div>
+    <div class='teams-section'><h2>📊 All UEFA Teams</h2>
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Spain</span>
+                <span class="ranks">#1 FIFA / #1 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1880.76</strong> → 
+                1889.54 / 1839.80
+                (Range: 49.74)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">France</span>
+                <span class="ranks">#3 FIFA / #2 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1862.71</strong> → 
+                1868.79 / 1819.05
+                (Range: 49.74)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">England</span>
+                <span class="ranks">#4 FIFA / #3 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1824.30</strong> → 
+                1834.72 / 1785.23
+                (Range: 49.49)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Portugal</span>
+                <span class="ranks">#5 FIFA / #4 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1778.00</strong> → 
+                1787.60 / 1737.71
+                (Range: 49.89)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Netherlands</span>
+                <span class="ranks">#6 FIFA / #5 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1759.96</strong> → 
+                1772.32 / 1722.39
+                (Range: 49.93)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Belgium</span>
+                <span class="ranks">#8 FIFA / #6 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1740.01</strong> → 
+                1745.16 / 1695.19
+                (Range: 49.97)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Italy</span>
+                <span class="ranks">#9 FIFA / #7 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1717.15</strong> → 
+                1724.98 / 1675.35
+                (Range: 49.63)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Germany</span>
+                <span class="ranks">#10 FIFA / #8 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1713.30</strong> → 
+                1723.58 / 1673.91
+                (Range: 49.67)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Croatia</span>
+                <span class="ranks">#11 FIFA / #9 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1710.15</strong> → 
+                1719.00 / 1669.52
+                (Range: 49.48)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Switzerland</span>
+                <span class="ranks">#17 FIFA / #10 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1653.32</strong> → 
+                1666.88 / 1617.42
+                (Range: 49.45)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Denmark</span>
+                <span class="ranks">#20 FIFA / #11 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1641.02</strong> → 
+                1657.04 / 1607.63
+                (Range: 49.41)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Austria</span>
+                <span class="ranks">#24 FIFA / #12 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1586.98</strong> → 
+                1597.66 / 1547.97
+                (Range: 49.68)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Türkiye</span>
+                <span class="ranks">#26 FIFA / #13 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1570.18</strong> → 
+                1595.18 / 1545.44
+                (Range: 49.75)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Ukraine</span>
+                <span class="ranks">#27 FIFA / #14 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1555.36</strong> → 
+                1581.23 / 1531.57
+                (Range: 49.67)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Norway</span>
+                <span class="ranks">#29 FIFA / #15 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1532.14</strong> → 
+                1554.66 / 1505.01
+                (Range: 49.65)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Poland</span>
+                <span class="ranks">#33 FIFA / #16 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1523.84</strong> → 
+                1542.25 / 1492.65
+                (Range: 49.60)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Wales</span>
+                <span class="ranks">#34 FIFA / #17 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1518.81</strong> → 
+                1527.31 / 1477.73
+                (Range: 49.58)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Serbia</span>
+                <span class="ranks">#36 FIFA / #18 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1507.84</strong> → 
+                1531.75 / 1481.93
+                (Range: 49.82)
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-header">
+                <span class="team-name">Hungary</span>
+                <span class="ranks">#37 FIFA / #19 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1504.92</strong> → 
+                1520.81 / 1471.25
+                (Range: 49.56)
+            </div>
+        </div>
+        
+        <div class="team-card scotland">
+            <div class="team-header">
+                <span class="team-name">Scotland</span>
+                <span class="ranks">#38 FIFA / #20 UEFA</span>
+            </div>
+            <div class="team-stats">
+                <strong>1504.20</strong> → 
+                1531.22 / 1481.81
+                (Range: 49.41)
+            </div>
+        </div>
+        <p style='text-align: center; color: #666; margin-top: 20px;'>Showing top 20 of 54 teams</p></div>
+    
+    <div class="footer">
+        Generated: 2025-11-14 03:01:50<br>
+        Data: UEFA fixtures November 11-18, 2025<br>
+        <small>Best/worst case analysis based on FIFA Elo system</small>
+    </div>
+</body>
+</html>

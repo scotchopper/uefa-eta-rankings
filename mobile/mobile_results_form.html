@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update FIFA Results</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 15px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .fixture-form {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+        }
+        .match-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .match-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .match-details {
+            color: #666;
+            font-size: 14px;
+        }
+        .score-input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .team-score {
+            text-align: center;
+            flex: 1;
+        }
+        .team-name {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .score-field {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .vs {
+            font-size: 20px;
+            font-weight: bold;
+            color: #666;
+        }
+        .notes-field {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            resize: vertical;
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+        .instructions {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            color: #666;
+            margin-top: 30px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚽ Update Results</h1>
+        <p>UEFA Fixtures - November 2025</p>
+    </div>
+    
+    <div class="instructions">
+        <strong>📱 How to use:</strong><br>
+        1. Enter final scores for completed matches<br>
+        2. Add any notes (optional)<br>
+        3. Tap "Update Result" - this saves to OneDrive<br>
+        4. Run analysis script on PC to see new rankings
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Azerbaijan vs Iceland</div>
+            <div class="match-details">
+                📅 2025-11-13 • 🏆 World Cup Qualifiers<br>
+                🏟️ Baku
+            </div>
+        </div>
+        
+        <form id="form-WCQD09" onsubmit="updateResult(event, 'WCQD09')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Azerbaijan</div>
+                    <input type="number" class="score-field" id="home-WCQD09" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Iceland</div>
+                    <input type="number" class="score-field" id="away-WCQD09" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQD09" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Azerbaijan vs Iceland
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">France vs Ukraine</div>
+            <div class="match-details">
+                📅 2025-11-13 • 🏆 World Cup Qualifiers<br>
+                🏟️ Paris
+            </div>
+        </div>
+        
+        <form id="form-WCQD10" onsubmit="updateResult(event, 'WCQD10')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">France</div>
+                    <input type="number" class="score-field" id="home-WCQD10" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Ukraine</div>
+                    <input type="number" class="score-field" id="away-WCQD10" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQD10" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for France vs Ukraine
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Armenia vs Hungary</div>
+            <div class="match-details">
+                📅 2025-11-13 • 🏆 World Cup Qualifiers<br>
+                🏟️ Yerevan
+            </div>
+        </div>
+        
+        <form id="form-WCQF09" onsubmit="updateResult(event, 'WCQF09')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Armenia</div>
+                    <input type="number" class="score-field" id="home-WCQF09" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Hungary</div>
+                    <input type="number" class="score-field" id="away-WCQF09" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQF09" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Armenia vs Hungary
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Republic of Ireland vs Portugal</div>
+            <div class="match-details">
+                📅 2025-11-13 • 🏆 World Cup Qualifiers<br>
+                🏟️ Dublin
+            </div>
+        </div>
+        
+        <form id="form-WCQF10" onsubmit="updateResult(event, 'WCQF10')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Republic of Ireland</div>
+                    <input type="number" class="score-field" id="home-WCQF10" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Portugal</div>
+                    <input type="number" class="score-field" id="away-WCQF10" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQF10" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Republic of Ireland vs Portugal
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Lithuania vs Israel</div>
+            <div class="match-details">
+                📅 2025-11-13 • 🏆 Friendlies<br>
+                🏟️ Kaunas
+            </div>
+        </div>
+        
+        <form id="form-FR02" onsubmit="updateResult(event, 'FR02')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Lithuania</div>
+                    <input type="number" class="score-field" id="home-FR02" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Israel</div>
+                    <input type="number" class="score-field" id="away-FR02" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-FR02" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Lithuania vs Israel
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Czechia vs San Marino</div>
+            <div class="match-details">
+                📅 2025-11-13 • 🏆 Friendlies<br>
+                🏟️ Karvina
+            </div>
+        </div>
+        
+        <form id="form-FR03" onsubmit="updateResult(event, 'FR03')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Czechia</div>
+                    <input type="number" class="score-field" id="home-FR03" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">San Marino</div>
+                    <input type="number" class="score-field" id="away-FR03" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-FR03" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Czechia vs San Marino
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">North Macedonia vs Latvia</div>
+            <div class="match-details">
+                📅 2025-11-13 • 🏆 Friendlies<br>
+                🏟️ Skopje
+            </div>
+        </div>
+        
+        <form id="form-FR05" onsubmit="updateResult(event, 'FR05')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">North Macedonia</div>
+                    <input type="number" class="score-field" id="home-FR05" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Latvia</div>
+                    <input type="number" class="score-field" id="away-FR05" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-FR05" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for North Macedonia vs Latvia
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Norway vs Estonia</div>
+            <div class="match-details">
+                📅 2025-11-13 • 🏆 World Cup Qualifiers<br>
+                🏟️ Oslo
+            </div>
+        </div>
+        
+        <form id="form-WCQI17" onsubmit="updateResult(event, 'WCQI17')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Norway</div>
+                    <input type="number" class="score-field" id="home-WCQI17" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Estonia</div>
+                    <input type="number" class="score-field" id="away-WCQI17" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQI17" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Norway vs Estonia
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Moldova vs Italy</div>
+            <div class="match-details">
+                📅 2025-11-13 • 🏆 World Cup Qualifiers<br>
+                🏟️ Chisinau
+            </div>
+        </div>
+        
+        <form id="form-WCQI18" onsubmit="updateResult(event, 'WCQI18')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Moldova</div>
+                    <input type="number" class="score-field" id="home-WCQI18" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Italy</div>
+                    <input type="number" class="score-field" id="away-WCQI18" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQI18" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Moldova vs Italy
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Andorra vs Albania</div>
+            <div class="match-details">
+                📅 2025-11-13 • 🏆 World Cup Qualifiers<br>
+                🏟️ Encamp
+            </div>
+        </div>
+        
+        <form id="form-WCQK17" onsubmit="updateResult(event, 'WCQK17')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Andorra</div>
+                    <input type="number" class="score-field" id="home-WCQK17" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Albania</div>
+                    <input type="number" class="score-field" id="away-WCQK17" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQK17" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Andorra vs Albania
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">England vs Serbia</div>
+            <div class="match-details">
+                📅 2025-11-13 • 🏆 World Cup Qualifiers<br>
+                🏟️ London
+            </div>
+        </div>
+        
+        <form id="form-WCQK18" onsubmit="updateResult(event, 'WCQK18')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">England</div>
+                    <input type="number" class="score-field" id="home-WCQK18" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Serbia</div>
+                    <input type="number" class="score-field" id="away-WCQK18" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQK18" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for England vs Serbia
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Luxembourg vs Germany</div>
+            <div class="match-details">
+                📅 2025-11-14 • 🏆 World Cup Qualifiers<br>
+                🏟️ Luxembourg City
+            </div>
+        </div>
+        
+        <form id="form-WCQA09" onsubmit="updateResult(event, 'WCQA09')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Luxembourg</div>
+                    <input type="number" class="score-field" id="home-WCQA09" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Germany</div>
+                    <input type="number" class="score-field" id="away-WCQA09" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQA09" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Luxembourg vs Germany
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Slovakia vs Northern Ireland</div>
+            <div class="match-details">
+                📅 2025-11-14 • 🏆 World Cup Qualifiers<br>
+                🏟️ Kosice
+            </div>
+        </div>
+        
+        <form id="form-WCQA10" onsubmit="updateResult(event, 'WCQA10')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Slovakia</div>
+                    <input type="number" class="score-field" id="home-WCQA10" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Northern Ireland</div>
+                    <input type="number" class="score-field" id="away-WCQA10" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQA10" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Slovakia vs Northern Ireland
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Finland vs Malta</div>
+            <div class="match-details">
+                📅 2025-11-14 • 🏆 World Cup Qualifiers<br>
+                🏟️ Helsinki
+            </div>
+        </div>
+        
+        <form id="form-WCQG17" onsubmit="updateResult(event, 'WCQG17')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Finland</div>
+                    <input type="number" class="score-field" id="home-WCQG17" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Malta</div>
+                    <input type="number" class="score-field" id="away-WCQG17" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQG17" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Finland vs Malta
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Poland vs Netherlands</div>
+            <div class="match-details">
+                📅 2025-11-14 • 🏆 World Cup Qualifiers<br>
+                🏟️ Warsaw
+            </div>
+        </div>
+        
+        <form id="form-WCQG18" onsubmit="updateResult(event, 'WCQG18')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Poland</div>
+                    <input type="number" class="score-field" id="home-WCQG18" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Netherlands</div>
+                    <input type="number" class="score-field" id="away-WCQG18" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQG18" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Poland vs Netherlands
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Croatia vs Faroe Islands</div>
+            <div class="match-details">
+                📅 2025-11-14 • 🏆 World Cup Qualifiers<br>
+                🏟️ Rijeka
+            </div>
+        </div>
+        
+        <form id="form-WCQL17" onsubmit="updateResult(event, 'WCQL17')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Croatia</div>
+                    <input type="number" class="score-field" id="home-WCQL17" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Faroe Islands</div>
+                    <input type="number" class="score-field" id="away-WCQL17" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQL17" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Croatia vs Faroe Islands
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Gibraltar vs Montenegro</div>
+            <div class="match-details">
+                📅 2025-11-14 • 🏆 World Cup Qualifiers<br>
+                🏟️ Gibraltar
+            </div>
+        </div>
+        
+        <form id="form-WCQL18" onsubmit="updateResult(event, 'WCQL18')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Gibraltar</div>
+                    <input type="number" class="score-field" id="home-WCQL18" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Montenegro</div>
+                    <input type="number" class="score-field" id="away-WCQL18" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQL18" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Gibraltar vs Montenegro
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Greece vs Scotland</div>
+            <div class="match-details">
+                📅 2025-11-15 • 🏆 World Cup Qualifiers<br>
+                🏟️ Paraeus
+            </div>
+        </div>
+        
+        <form id="form-WCQC09" onsubmit="updateResult(event, 'WCQC09')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Greece</div>
+                    <input type="number" class="score-field" id="home-WCQC09" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Scotland</div>
+                    <input type="number" class="score-field" id="away-WCQC09" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQC09" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Greece vs Scotland
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Denmark vs Belarus</div>
+            <div class="match-details">
+                📅 2025-11-15 • 🏆 World Cup Qualifiers<br>
+                🏟️ Copenhagen
+            </div>
+        </div>
+        
+        <form id="form-WCQC10" onsubmit="updateResult(event, 'WCQC10')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Denmark</div>
+                    <input type="number" class="score-field" id="home-WCQC10" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Belarus</div>
+                    <input type="number" class="score-field" id="away-WCQC10" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQC10" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Denmark vs Belarus
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Slovenia vs Kosovo</div>
+            <div class="match-details">
+                📅 2025-11-15 • 🏆 World Cup Qualifiers<br>
+                🏟️ Ljubljana
+            </div>
+        </div>
+        
+        <form id="form-WCQB09" onsubmit="updateResult(event, 'WCQB09')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Slovenia</div>
+                    <input type="number" class="score-field" id="home-WCQB09" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Kosovo</div>
+                    <input type="number" class="score-field" id="away-WCQB09" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQB09" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Slovenia vs Kosovo
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Switzerland vs Sweden</div>
+            <div class="match-details">
+                📅 2025-11-15 • 🏆 World Cup Qualifiers<br>
+                🏟️ Geneva
+            </div>
+        </div>
+        
+        <form id="form-WCQB10" onsubmit="updateResult(event, 'WCQB10')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Switzerland</div>
+                    <input type="number" class="score-field" id="home-WCQB10" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Sweden</div>
+                    <input type="number" class="score-field" id="away-WCQB10" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQB10" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Switzerland vs Sweden
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Georgia vs Spain</div>
+            <div class="match-details">
+                📅 2025-11-15 • 🏆 World Cup Qualifiers<br>
+                🏟️ Tbilisi
+            </div>
+        </div>
+        
+        <form id="form-WCQE09" onsubmit="updateResult(event, 'WCQE09')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Georgia</div>
+                    <input type="number" class="score-field" id="home-WCQE09" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Spain</div>
+                    <input type="number" class="score-field" id="away-WCQE09" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQE09" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Georgia vs Spain
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Türkiye vs Bulgaria</div>
+            <div class="match-details">
+                📅 2025-11-15 • 🏆 World Cup Qualifiers<br>
+                🏟️ Bursa
+            </div>
+        </div>
+        
+        <form id="form-WCQE10" onsubmit="updateResult(event, 'WCQE10')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Türkiye</div>
+                    <input type="number" class="score-field" id="home-WCQE10" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Bulgaria</div>
+                    <input type="number" class="score-field" id="away-WCQE10" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQE10" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Türkiye vs Bulgaria
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Cyprus vs Austria</div>
+            <div class="match-details">
+                📅 2025-11-15 • 🏆 World Cup Qualifiers<br>
+                🏟️ Limassol
+            </div>
+        </div>
+        
+        <form id="form-WCQH17" onsubmit="updateResult(event, 'WCQH17')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Cyprus</div>
+                    <input type="number" class="score-field" id="home-WCQH17" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Austria</div>
+                    <input type="number" class="score-field" id="away-WCQH17" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQH17" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Cyprus vs Austria
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Bosnia and Herzegovina vs Romania</div>
+            <div class="match-details">
+                📅 2025-11-15 • 🏆 World Cup Qualifiers<br>
+                🏟️ Zenica
+            </div>
+        </div>
+        
+        <form id="form-WCQH18" onsubmit="updateResult(event, 'WCQH18')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Bosnia and Herzegovina</div>
+                    <input type="number" class="score-field" id="home-WCQH18" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Romania</div>
+                    <input type="number" class="score-field" id="away-WCQH18" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQH18" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Bosnia and Herzegovina vs Romania
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Kazakhstan vs Belgium</div>
+            <div class="match-details">
+                📅 2025-11-15 • 🏆 World Cup Qualifiers<br>
+                🏟️ Astana
+            </div>
+        </div>
+        
+        <form id="form-WCQJ17" onsubmit="updateResult(event, 'WCQJ17')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Kazakhstan</div>
+                    <input type="number" class="score-field" id="home-WCQJ17" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Belgium</div>
+                    <input type="number" class="score-field" id="away-WCQJ17" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQJ17" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Kazakhstan vs Belgium
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Liechtenstein vs Wales</div>
+            <div class="match-details">
+                📅 2025-11-15 • 🏆 World Cup Qualifiers<br>
+                🏟️ Vaduz
+            </div>
+        </div>
+        
+        <form id="form-WCQJ18" onsubmit="updateResult(event, 'WCQJ18')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Liechtenstein</div>
+                    <input type="number" class="score-field" id="home-WCQJ18" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Wales</div>
+                    <input type="number" class="score-field" id="away-WCQJ18" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQJ18" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Liechtenstein vs Wales
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Ukraine vs Iceland</div>
+            <div class="match-details">
+                📅 2025-11-16 • 🏆 World Cup Qualifiers<br>
+                🏟️ Warsaw
+            </div>
+        </div>
+        
+        <form id="form-WCQD11" onsubmit="updateResult(event, 'WCQD11')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Ukraine</div>
+                    <input type="number" class="score-field" id="home-WCQD11" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Iceland</div>
+                    <input type="number" class="score-field" id="away-WCQD11" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQD11" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Ukraine vs Iceland
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Azerbaijan vs France</div>
+            <div class="match-details">
+                📅 2025-11-16 • 🏆 World Cup Qualifiers<br>
+                🏟️ Baku
+            </div>
+        </div>
+        
+        <form id="form-WCQD12" onsubmit="updateResult(event, 'WCQD12')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Azerbaijan</div>
+                    <input type="number" class="score-field" id="home-WCQD12" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">France</div>
+                    <input type="number" class="score-field" id="away-WCQD12" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQD12" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Azerbaijan vs France
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Portugal vs Armenia</div>
+            <div class="match-details">
+                📅 2025-11-16 • 🏆 World Cup Qualifiers<br>
+                🏟️ Porto
+            </div>
+        </div>
+        
+        <form id="form-WCQF11" onsubmit="updateResult(event, 'WCQF11')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Portugal</div>
+                    <input type="number" class="score-field" id="home-WCQF11" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Armenia</div>
+                    <input type="number" class="score-field" id="away-WCQF11" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQF11" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Portugal vs Armenia
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Hungary vs Republic of Ireland</div>
+            <div class="match-details">
+                📅 2025-11-16 • 🏆 World Cup Qualifiers<br>
+                🏟️ Budapest
+            </div>
+        </div>
+        
+        <form id="form-WCQF12" onsubmit="updateResult(event, 'WCQF12')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Hungary</div>
+                    <input type="number" class="score-field" id="home-WCQF12" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Republic of Ireland</div>
+                    <input type="number" class="score-field" id="away-WCQF12" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQF12" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Hungary vs Republic of Ireland
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Italy vs Norway</div>
+            <div class="match-details">
+                📅 2025-11-16 • 🏆 World Cup Qualifiers<br>
+                🏟️ Milan
+            </div>
+        </div>
+        
+        <form id="form-WCQI19" onsubmit="updateResult(event, 'WCQI19')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Italy</div>
+                    <input type="number" class="score-field" id="home-WCQI19" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Norway</div>
+                    <input type="number" class="score-field" id="away-WCQI19" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQI19" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Italy vs Norway
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Israel vs Moldova</div>
+            <div class="match-details">
+                📅 2025-11-16 • 🏆 World Cup Qualifiers<br>
+                🏟️ Chisinau
+            </div>
+        </div>
+        
+        <form id="form-WCQI20" onsubmit="updateResult(event, 'WCQI20')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Israel</div>
+                    <input type="number" class="score-field" id="home-WCQI20" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Moldova</div>
+                    <input type="number" class="score-field" id="away-WCQI20" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQI20" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Israel vs Moldova
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Serbia vs Latvia</div>
+            <div class="match-details">
+                📅 2025-11-16 • 🏆 World Cup Qualifiers<br>
+                🏟️ Leskovac
+            </div>
+        </div>
+        
+        <form id="form-WCQK19" onsubmit="updateResult(event, 'WCQK19')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Serbia</div>
+                    <input type="number" class="score-field" id="home-WCQK19" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Latvia</div>
+                    <input type="number" class="score-field" id="away-WCQK19" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQK19" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Serbia vs Latvia
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Albania vs England</div>
+            <div class="match-details">
+                📅 2025-11-16 • 🏆 World Cup Qualifiers<br>
+                🏟️ Tirana
+            </div>
+        </div>
+        
+        <form id="form-WCQK20" onsubmit="updateResult(event, 'WCQK20')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Albania</div>
+                    <input type="number" class="score-field" id="home-WCQK20" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">England</div>
+                    <input type="number" class="score-field" id="away-WCQK20" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQK20" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Albania vs England
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Northern Ireland vs Luxembourg</div>
+            <div class="match-details">
+                📅 2025-11-17 • 🏆 World Cup Qualifiers<br>
+                🏟️ Belfast
+            </div>
+        </div>
+        
+        <form id="form-WCQA11" onsubmit="updateResult(event, 'WCQA11')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Northern Ireland</div>
+                    <input type="number" class="score-field" id="home-WCQA11" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Luxembourg</div>
+                    <input type="number" class="score-field" id="away-WCQA11" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQA11" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Northern Ireland vs Luxembourg
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Germany vs Slovakia</div>
+            <div class="match-details">
+                📅 2025-11-17 • 🏆 World Cup Qualifiers<br>
+                🏟️ Leipzig
+            </div>
+        </div>
+        
+        <form id="form-WCQA12" onsubmit="updateResult(event, 'WCQA12')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Germany</div>
+                    <input type="number" class="score-field" id="home-WCQA12" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Slovakia</div>
+                    <input type="number" class="score-field" id="away-WCQA12" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQA12" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Germany vs Slovakia
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Malta vs Poland</div>
+            <div class="match-details">
+                📅 2025-11-17 • 🏆 World Cup Qualifiers<br>
+                🏟️ Ta' Qali
+            </div>
+        </div>
+        
+        <form id="form-WCQG19" onsubmit="updateResult(event, 'WCQG19')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Malta</div>
+                    <input type="number" class="score-field" id="home-WCQG19" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Poland</div>
+                    <input type="number" class="score-field" id="away-WCQG19" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQG19" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Malta vs Poland
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Netherlands vs Lithuania</div>
+            <div class="match-details">
+                📅 2025-11-17 • 🏆 World Cup Qualifiers<br>
+                🏟️ Amsterdam
+            </div>
+        </div>
+        
+        <form id="form-WCQG20" onsubmit="updateResult(event, 'WCQG20')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Netherlands</div>
+                    <input type="number" class="score-field" id="home-WCQG20" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Lithuania</div>
+                    <input type="number" class="score-field" id="away-WCQG20" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQG20" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Netherlands vs Lithuania
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Finland vs Andorra</div>
+            <div class="match-details">
+                📅 2025-11-17 • 🏆 Friendlies<br>
+                🏟️ Tampere
+            </div>
+        </div>
+        
+        <form id="form-FR01" onsubmit="updateResult(event, 'FR01')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Finland</div>
+                    <input type="number" class="score-field" id="home-FR01" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Andorra</div>
+                    <input type="number" class="score-field" id="away-FR01" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-FR01" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Finland vs Andorra
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Montenegro vs Croatia</div>
+            <div class="match-details">
+                📅 2025-11-17 • 🏆 World Cup Qualifiers<br>
+                🏟️ Podgorica
+            </div>
+        </div>
+        
+        <form id="form-WCQL19" onsubmit="updateResult(event, 'WCQL19')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Montenegro</div>
+                    <input type="number" class="score-field" id="home-WCQL19" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Croatia</div>
+                    <input type="number" class="score-field" id="away-WCQL19" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQL19" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Montenegro vs Croatia
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Czechia vs Gibraltar</div>
+            <div class="match-details">
+                📅 2025-11-17 • 🏆 World Cup Qualifiers<br>
+                🏟️ Prague
+            </div>
+        </div>
+        
+        <form id="form-WCQL20" onsubmit="updateResult(event, 'WCQL20')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Czechia</div>
+                    <input type="number" class="score-field" id="home-WCQL20" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Gibraltar</div>
+                    <input type="number" class="score-field" id="away-WCQL20" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQL20" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Czechia vs Gibraltar
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Scotland vs Denmark</div>
+            <div class="match-details">
+                📅 2025-11-18 • 🏆 World Cup Qualifiers<br>
+                🏟️ Hampden Park
+            </div>
+        </div>
+        
+        <form id="form-WCQC11" onsubmit="updateResult(event, 'WCQC11')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Scotland</div>
+                    <input type="number" class="score-field" id="home-WCQC11" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Denmark</div>
+                    <input type="number" class="score-field" id="away-WCQC11" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQC11" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Scotland vs Denmark
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Belarus vs Greece</div>
+            <div class="match-details">
+                📅 2025-11-18 • 🏆 World Cup Qualifiers<br>
+                🏟️ Copenhagen
+            </div>
+        </div>
+        
+        <form id="form-WCQC12" onsubmit="updateResult(event, 'WCQC12')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Belarus</div>
+                    <input type="number" class="score-field" id="home-WCQC12" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Greece</div>
+                    <input type="number" class="score-field" id="away-WCQC12" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQC12" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Belarus vs Greece
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Sweden vs Slovenia</div>
+            <div class="match-details">
+                📅 2025-11-18 • 🏆 World Cup Qualifiers<br>
+                🏟️ Solna
+            </div>
+        </div>
+        
+        <form id="form-WCQB11" onsubmit="updateResult(event, 'WCQB11')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Sweden</div>
+                    <input type="number" class="score-field" id="home-WCQB11" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Slovenia</div>
+                    <input type="number" class="score-field" id="away-WCQB11" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQB11" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Sweden vs Slovenia
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Kosovo vs Switzerland</div>
+            <div class="match-details">
+                📅 2025-11-18 • 🏆 World Cup Qualifiers<br>
+                🏟️ Pristina
+            </div>
+        </div>
+        
+        <form id="form-WCQB12" onsubmit="updateResult(event, 'WCQB12')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Kosovo</div>
+                    <input type="number" class="score-field" id="home-WCQB12" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Switzerland</div>
+                    <input type="number" class="score-field" id="away-WCQB12" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQB12" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Kosovo vs Switzerland
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Bulgaria vs Georgia</div>
+            <div class="match-details">
+                📅 2025-11-18 • 🏆 World Cup Qualifiers<br>
+                🏟️ Sofia
+            </div>
+        </div>
+        
+        <form id="form-WCQE11" onsubmit="updateResult(event, 'WCQE11')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Bulgaria</div>
+                    <input type="number" class="score-field" id="home-WCQE11" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Georgia</div>
+                    <input type="number" class="score-field" id="away-WCQE11" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQE11" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Bulgaria vs Georgia
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Spain vs Türkiye</div>
+            <div class="match-details">
+                📅 2025-11-18 • 🏆 World Cup Qualifiers<br>
+                🏟️ Seville
+            </div>
+        </div>
+        
+        <form id="form-WCQE12" onsubmit="updateResult(event, 'WCQE12')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Spain</div>
+                    <input type="number" class="score-field" id="home-WCQE12" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Türkiye</div>
+                    <input type="number" class="score-field" id="away-WCQE12" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQE12" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Spain vs Türkiye
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Cyprus vs Estonia</div>
+            <div class="match-details">
+                📅 2025-11-18 • 🏆 Friendlies<br>
+                🏟️ Larnaca
+            </div>
+        </div>
+        
+        <form id="form-FR04" onsubmit="updateResult(event, 'FR04')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Cyprus</div>
+                    <input type="number" class="score-field" id="home-FR04" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Estonia</div>
+                    <input type="number" class="score-field" id="away-FR04" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-FR04" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Cyprus vs Estonia
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Faroe Islands vs Kazakhstan</div>
+            <div class="match-details">
+                📅 2025-11-18 • 🏆 Friendlies<br>
+                🏟️ Pula Croatia
+            </div>
+        </div>
+        
+        <form id="form-FR06" onsubmit="updateResult(event, 'FR06')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Faroe Islands</div>
+                    <input type="number" class="score-field" id="home-FR06" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Kazakhstan</div>
+                    <input type="number" class="score-field" id="away-FR06" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-FR06" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Faroe Islands vs Kazakhstan
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Romania vs San Marino</div>
+            <div class="match-details">
+                📅 2025-11-18 • 🏆 World Cup Qualifiers<br>
+                🏟️ Ploiesti
+            </div>
+        </div>
+        
+        <form id="form-WCQH19" onsubmit="updateResult(event, 'WCQH19')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Romania</div>
+                    <input type="number" class="score-field" id="home-WCQH19" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">San Marino</div>
+                    <input type="number" class="score-field" id="away-WCQH19" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQH19" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Romania vs San Marino
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Austria vs Bosnia and Herzegovina</div>
+            <div class="match-details">
+                📅 2025-11-18 • 🏆 World Cup Qualifiers<br>
+                🏟️ Vienna
+            </div>
+        </div>
+        
+        <form id="form-WCQH20" onsubmit="updateResult(event, 'WCQH20')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Austria</div>
+                    <input type="number" class="score-field" id="home-WCQH20" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Bosnia and Herzegovina</div>
+                    <input type="number" class="score-field" id="away-WCQH20" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQH20" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Austria vs Bosnia and Herzegovina
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Wales vs North Macedonia</div>
+            <div class="match-details">
+                📅 2025-11-18 • 🏆 World Cup Qualifiers<br>
+                🏟️ Cardiff
+            </div>
+        </div>
+        
+        <form id="form-WCQJ19" onsubmit="updateResult(event, 'WCQJ19')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Wales</div>
+                    <input type="number" class="score-field" id="home-WCQJ19" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">North Macedonia</div>
+                    <input type="number" class="score-field" id="away-WCQJ19" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQJ19" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Wales vs North Macedonia
+            </button>
+        </form>
+    </div>
+
+    <div class="fixture-form">
+        <div class="match-info">
+            <div class="match-title">Belgium vs Liechtenstein</div>
+            <div class="match-details">
+                📅 2025-11-18 • 🏆 World Cup Qualifiers<br>
+                🏟️ Liege
+            </div>
+        </div>
+        
+        <form id="form-WCQJ20" onsubmit="updateResult(event, 'WCQJ20')">
+            <div class="score-input">
+                <div class="team-score">
+                    <div class="team-name">Belgium</div>
+                    <input type="number" class="score-field" id="home-WCQJ20" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-score">
+                    <div class="team-name">Liechtenstein</div>
+                    <input type="number" class="score-field" id="away-WCQJ20" 
+                           min="0" max="20" placeholder="0" required>
+                </div>
+            </div>
+            
+            <textarea class="notes-field" id="notes-WCQJ20" 
+                      placeholder="Optional notes (e.g., red cards, penalties, etc.)"></textarea>
+            
+            <button type="submit" class="submit-btn">
+                ✅ Update Result for Belgium vs Liechtenstein
+            </button>
+        </form>
+    </div>
+
+    <div class="footer">
+        Generated: 2025-11-14 03:05:25<br>
+        54 fixtures awaiting results
+    </div>
+
+    <script>
+        function updateResult(event, fixtureId) {
+            event.preventDefault();
+            
+            const homeGoals = document.getElementById('home-' + fixtureId).value;
+            const awayGoals = document.getElementById('away-' + fixtureId).value;
+            const notes = document.getElementById('notes-' + fixtureId).value;
+            
+            // Create result data
+            const result = {
+                fixture_id: fixtureId,
+                home_goals: parseInt(homeGoals),
+                away_goals: parseInt(awayGoals),
+                notes: notes,
+                updated_at: new Date().toISOString()
+            };
+            
+            // Save to localStorage (will be processed later)
+            let savedResults = JSON.parse(localStorage.getItem('fifa_results') || '[]');
+            
+            // Remove any existing result for this fixture
+            savedResults = savedResults.filter(r => r.fixture_id !== fixtureId);
+            
+            // Add new result
+            savedResults.push(result);
+            localStorage.setItem('fifa_results', JSON.stringify(savedResults));
+            
+            // Visual feedback
+            const form = document.getElementById('form-' + fixtureId);
+            const button = form.querySelector('.submit-btn');
+            button.innerHTML = '✅ Result Saved!';
+            button.style.background = '#27ae60';
+            
+            // Disable form
+            form.querySelectorAll('input, textarea, button').forEach(el => {
+                el.disabled = true;
+            });
+            
+            setTimeout(() => {
+                alert('Result saved! ' + homeGoals + '-' + awayGoals + '\n\nTo update rankings:\n1. Sync OneDrive\n2. Run analysis on PC');
+            }, 500);
+        }
+        
+        // Load saved results on page load
+        window.onload = function() {
+            const savedResults = JSON.parse(localStorage.getItem('fifa_results') || '[]');
+            
+            savedResults.forEach(result => {
+                const homeField = document.getElementById('home-' + result.fixture_id);
+                const awayField = document.getElementById('away-' + result.fixture_id);
+                const notesField = document.getElementById('notes-' + result.fixture_id);
+                
+                if (homeField) {
+                    homeField.value = result.home_goals;
+                    awayField.value = result.away_goals;
+                    notesField.value = result.notes;
+                    
+                    // Disable the form
+                    const form = document.getElementById('form-' + result.fixture_id);
+                    form.querySelectorAll('input, textarea, button').forEach(el => {
+                        el.disabled = true;
+                    });
+                    
+                    const button = form.querySelector('.submit-btn');
+                    button.innerHTML = '✅ Result Saved!';
+                    button.style.background = '#27ae60';
+                }
+            });
+        };
+    </script>
+</body>
+</html>

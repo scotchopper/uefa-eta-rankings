@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA Results Mobile</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; padding: 10px; background: #f0f0f0; }
+        .header { background: #2c3e50; color: white; padding: 20px; border-radius: 10px; text-align: center; margin-bottom: 20px; }
+        .fixture { background: white; margin: 10px 0; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .match { text-align: center; font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #2c3e50; }
+        .details { text-align: center; color: #666; font-size: 14px; margin-bottom: 20px; }
+        .score-row { display: flex; justify-content: center; align-items: center; gap: 20px; margin: 20px 0; }
+        .team { text-align: center; }
+        .team-name { font-weight: bold; margin-bottom: 10px; }
+        .score-input { width: 50px; height: 50px; font-size: 24px; font-weight: bold; text-align: center; border: 2px solid #ddd; border-radius: 8px; }
+        .vs { font-size: 24px; font-weight: bold; color: #888; }
+        .save-btn { background: #27ae60; color: white; border: none; padding: 15px; border-radius: 8px; font-size: 16px; font-weight: bold; width: 100%; cursor: pointer; }
+        .instructions { background: #fff3cd; padding: 15px; border-radius: 6px; margin-bottom: 20px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚽ Update Results</h1>
+        <p>UEFA Fixtures Mobile Form</p>
+    </div>
+    
+    <div class="instructions">
+        <strong>📱 How to use:</strong><br>
+        1. Enter final match scores<br>
+        2. Tap "Save Result" - data stored locally<br>
+        3. Copy results to PC for processing
+    </div>
+
+    <div class="fixture">
+        <div class="match">Scotland vs Greece</div>
+        <div class="details">📅 2025-11-15 • 🏆 World Cup Qualifiers</div>
+        
+        <div class="score-row">
+            <div class="team">
+                <div class="team-name">Scotland</div>
+                <input type="number" class="score-input" id="home_001" min="0" max="15" placeholder="0">
+            </div>
+            <div class="vs">-</div>
+            <div class="team">
+                <div class="team-name">Greece</div>
+                <input type="number" class="score-input" id="away_001" min="0" max="15" placeholder="0">
+            </div>
+        </div>
+        
+        <button class="save-btn" onclick="saveResult('001', 'Scotland', 'Greece')">💾 Save Result</button>
+    </div>
+
+    <div class="fixture">
+        <div class="match">Denmark vs Scotland</div>
+        <div class="details">📅 2025-11-18 • 🏆 World Cup Qualifiers</div>
+        
+        <div class="score-row">
+            <div class="team">
+                <div class="team-name">Denmark</div>
+                <input type="number" class="score-input" id="home_002" min="0" max="15" placeholder="0">
+            </div>
+            <div class="vs">-</div>
+            <div class="team">
+                <div class="team-name">Scotland</div>
+                <input type="number" class="score-input" id="away_002" min="0" max="15" placeholder="0">
+            </div>
+        </div>
+        
+        <button class="save-btn" onclick="saveResult('002', 'Denmark', 'Scotland')">💾 Save Result</button>
+    </div>
+
+    <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; text-align: center;">
+        <h3>📊 Saved Results</h3>
+        <div id="saved-results">No results saved yet</div>
+        <button onclick="exportResults()" style="background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 6px; margin-top: 10px;">📋 Copy All Results</button>
+    </div>
+
+    <script>
+        let savedResults = JSON.parse(localStorage.getItem('fifa_mobile_results') || '[]');
+        
+        function saveResult(fixtureId, team1, team2) {
+            const goals1 = document.getElementById('home_' + fixtureId).value;
+            const goals2 = document.getElementById('away_' + fixtureId).value;
+            
+            if (goals1 === '' || goals2 === '') {
+                alert('Please enter both scores');
+                return;
+            }
+            
+            const result = {
+                fixture_id: fixtureId,
+                team1: team1,
+                team2: team2,
+                goals1: parseInt(goals1),
+                goals2: parseInt(goals2),
+                timestamp: new Date().toISOString()
+            };
+            
+            savedResults = savedResults.filter(r => r.fixture_id !== fixtureId);
+            savedResults.push(result);
+            localStorage.setItem('fifa_mobile_results', JSON.stringify(savedResults));
+            
+            event.target.innerHTML = '✅ Saved!';
+            setTimeout(() => { event.target.innerHTML = '💾 Save Result'; }, 2000);
+            updateDisplay();
+        }
+        
+        function updateDisplay() {
+            const display = document.getElementById('saved-results');
+            if (savedResults.length === 0) {
+                display.innerHTML = 'No results saved yet';
+                return;
+            }
+            
+            let html = '';
+            savedResults.forEach(result => {
+                html += '<div style="margin: 5px 0; padding: 5px; background: #f8f9fa; border-radius: 4px;">' +
+                       result.team1 + ' ' + result.goals1 + '-' + result.goals2 + ' ' + result.team2 + '</div>';
+            });
+            display.innerHTML = html;
+        }
+        
+        function exportResults() {
+            if (savedResults.length === 0) {
+                alert('No results to export');
+                return;
+            }
+            
+            let text = 'FIFA Mobile Results:\n\n';
+            savedResults.forEach(result => {
+                text += result.fixture_id + ': ' + result.team1 + ' ' + result.goals1 + '-' + result.goals2 + ' ' + result.team2 + '\n';
+            });
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => { alert('Results copied!'); });
+            } else {
+                alert(text);
+            }
+        }
+        
+        window.onload = function() {
+            updateDisplay();
+            savedResults.forEach(result => {
+                const input1 = document.getElementById('home_' + result.fixture_id);
+                const input2 = document.getElementById('away_' + result.fixture_id);
+                if (input1) {
+                    input1.value = result.goals1;
+                    input2.value = result.goals2;
+                }
+            });
+        };
+    </script>
+</body>
+</html>

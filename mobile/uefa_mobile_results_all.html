@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UEFA Results Mobile - All Fixtures</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+            margin: 0; padding: 10px; background: #f0f0f0; 
+        }
+        .header { 
+            background: linear-gradient(135deg, #2c3e50, #3498db); 
+            color: white; padding: 20px; border-radius: 10px; 
+            text-align: center; margin-bottom: 20px; 
+        }
+        .stats { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; 
+            margin-bottom: 20px; 
+        }
+        .stat-card { 
+            background: white; padding: 15px; border-radius: 8px; 
+            text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        }
+        .stat-number { font-size: 24px; font-weight: bold; color: #2c3e50; }
+        .stat-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .tabs { 
+            display: flex; background: white; border-radius: 10px; 
+            margin-bottom: 20px; overflow: hidden; 
+        }
+        .tab { 
+            flex: 1; padding: 15px; text-align: center; background: white; 
+            border: none; cursor: pointer; font-weight: 600; color: #666; 
+        }
+        .tab.active { background: #3498db; color: white; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .fixture { 
+            background: white; margin: 10px 0; padding: 15px; 
+            border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            border-left: 4px solid #ddd;
+        }
+        .fixture.scotland { border-left-color: #005EB8; }
+        .fixture.completed { border-left-color: #27ae60; }
+        .match-header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 10px; 
+        }
+        .match-title { font-size: 16px; font-weight: bold; color: #2c3e50; }
+        .match-date { font-size: 12px; color: #666; }
+        .match-details { 
+            font-size: 13px; color: #666; margin-bottom: 15px; 
+            text-align: center; 
+        }
+        .score-row { 
+            display: flex; justify-content: center; align-items: center; 
+            gap: 15px; margin: 15px 0; 
+        }
+        .team { text-align: center; flex: 1; }
+        .team-name { font-weight: bold; margin-bottom: 8px; font-size: 14px; }
+        .score-input { 
+            width: 45px; height: 45px; font-size: 20px; font-weight: bold; 
+            text-align: center; border: 2px solid #ddd; border-radius: 6px; 
+        }
+        .vs { font-size: 18px; font-weight: bold; color: #888; }
+        .save-btn { 
+            background: #27ae60; color: white; border: none; padding: 12px; 
+            border-radius: 6px; font-size: 14px; font-weight: bold; 
+            width: 100%; cursor: pointer; margin-top: 10px; 
+        }
+        .result-display { 
+            background: #f8f9fa; padding: 10px; border-radius: 6px; 
+            text-align: center; font-weight: bold; 
+        }
+        .controls { 
+            background: white; padding: 20px; border-radius: 10px; 
+            margin: 20px 0; text-align: center; 
+        }
+        .control-btn { 
+            background: #3498db; color: white; border: none; 
+            padding: 12px 20px; border-radius: 6px; margin: 5px; 
+            cursor: pointer; font-weight: bold; 
+        }
+        .control-btn.danger { background: #e74c3c; }
+        .control-btn.success { background: #27ae60; }
+        .search-box { 
+            width: 100%; padding: 10px; border: 1px solid #ddd; 
+            border-radius: 6px; margin-bottom: 15px; 
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>UEFA Results Mobile</h1>
+        <p>All 54 UEFA Fixtures - November 2025</p>
+    </div>
+    
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-number">54</div>
+            <div class="stat-label">Scheduled</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Completed</div>
+        </div>
+    </div>
+    
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('scheduled')">Scheduled</button>
+        <button class="tab" onclick="showTab('completed')">Completed</button>
+        <button class="tab" onclick="showTab('saved')">Saved</button>
+    </div>
+    
+    <div id="scheduled" class="tab-content active">
+        <input type="text" class="search-box" placeholder="Search teams..." onkeyup="filterFixtures('scheduled')">
+        <div id="scheduled-fixtures">
+
+            <div class="fixture" data-teams="azerbaijan iceland">
+                <div class="match-header">
+                    <div class="match-title">Azerbaijan vs Iceland</div>
+                    <div class="match-date">2025-11-13</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Baku
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Azerbaijan</div>
+                        <input type="number" class="score-input" id="home_WCQD09" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Iceland</div>
+                        <input type="number" class="score-input" id="away_WCQD09" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQD09', 'Azerbaijan', 'Iceland')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="france ukraine">
+                <div class="match-header">
+                    <div class="match-title">France vs Ukraine</div>
+                    <div class="match-date">2025-11-13</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Paris
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">France</div>
+                        <input type="number" class="score-input" id="home_WCQD10" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Ukraine</div>
+                        <input type="number" class="score-input" id="away_WCQD10" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQD10', 'France', 'Ukraine')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="armenia hungary">
+                <div class="match-header">
+                    <div class="match-title">Armenia vs Hungary</div>
+                    <div class="match-date">2025-11-13</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Yerevan
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Armenia</div>
+                        <input type="number" class="score-input" id="home_WCQF09" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Hungary</div>
+                        <input type="number" class="score-input" id="away_WCQF09" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQF09', 'Armenia', 'Hungary')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="republic of ireland portugal">
+                <div class="match-header">
+                    <div class="match-title">Republic of Ireland vs Portugal</div>
+                    <div class="match-date">2025-11-13</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Dublin
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Republic of Ireland</div>
+                        <input type="number" class="score-input" id="home_WCQF10" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Portugal</div>
+                        <input type="number" class="score-input" id="away_WCQF10" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQF10', 'Republic of Ireland', 'Portugal')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="lithuania israel">
+                <div class="match-header">
+                    <div class="match-title">Lithuania vs Israel</div>
+                    <div class="match-date">2025-11-13</div>
+                </div>
+                <div class="match-details">
+                    NL (×10) • Kaunas
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Lithuania</div>
+                        <input type="number" class="score-input" id="home_FR02" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Israel</div>
+                        <input type="number" class="score-input" id="away_FR02" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('FR02', 'Lithuania', 'Israel')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="czechia san marino">
+                <div class="match-header">
+                    <div class="match-title">Czechia vs San Marino</div>
+                    <div class="match-date">2025-11-13</div>
+                </div>
+                <div class="match-details">
+                    NL (×10) • Karvina
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Czechia</div>
+                        <input type="number" class="score-input" id="home_FR03" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">San Marino</div>
+                        <input type="number" class="score-input" id="away_FR03" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('FR03', 'Czechia', 'San Marino')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="north macedonia latvia">
+                <div class="match-header">
+                    <div class="match-title">North Macedonia vs Latvia</div>
+                    <div class="match-date">2025-11-13</div>
+                </div>
+                <div class="match-details">
+                    NL (×10) • Skopje
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">North Macedonia</div>
+                        <input type="number" class="score-input" id="home_FR05" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Latvia</div>
+                        <input type="number" class="score-input" id="away_FR05" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('FR05', 'North Macedonia', 'Latvia')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="norway estonia">
+                <div class="match-header">
+                    <div class="match-title">Norway vs Estonia</div>
+                    <div class="match-date">2025-11-13</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Oslo
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Norway</div>
+                        <input type="number" class="score-input" id="home_WCQI17" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Estonia</div>
+                        <input type="number" class="score-input" id="away_WCQI17" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQI17', 'Norway', 'Estonia')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="moldova italy">
+                <div class="match-header">
+                    <div class="match-title">Moldova vs Italy</div>
+                    <div class="match-date">2025-11-13</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Chisinau
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Moldova</div>
+                        <input type="number" class="score-input" id="home_WCQI18" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Italy</div>
+                        <input type="number" class="score-input" id="away_WCQI18" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQI18', 'Moldova', 'Italy')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="andorra albania">
+                <div class="match-header">
+                    <div class="match-title">Andorra vs Albania</div>
+                    <div class="match-date">2025-11-13</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Encamp
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Andorra</div>
+                        <input type="number" class="score-input" id="home_WCQK17" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Albania</div>
+                        <input type="number" class="score-input" id="away_WCQK17" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQK17', 'Andorra', 'Albania')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="england serbia">
+                <div class="match-header">
+                    <div class="match-title">England vs Serbia</div>
+                    <div class="match-date">2025-11-13</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • London
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">England</div>
+                        <input type="number" class="score-input" id="home_WCQK18" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Serbia</div>
+                        <input type="number" class="score-input" id="away_WCQK18" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQK18', 'England', 'Serbia')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="luxembourg germany">
+                <div class="match-header">
+                    <div class="match-title">Luxembourg vs Germany</div>
+                    <div class="match-date">2025-11-14</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Luxembourg City
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Luxembourg</div>
+                        <input type="number" class="score-input" id="home_WCQA09" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Germany</div>
+                        <input type="number" class="score-input" id="away_WCQA09" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQA09', 'Luxembourg', 'Germany')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="slovakia northern ireland">
+                <div class="match-header">
+                    <div class="match-title">Slovakia vs Northern Ireland</div>
+                    <div class="match-date">2025-11-14</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Kosice
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Slovakia</div>
+                        <input type="number" class="score-input" id="home_WCQA10" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Northern Ireland</div>
+                        <input type="number" class="score-input" id="away_WCQA10" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQA10', 'Slovakia', 'Northern Ireland')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="finland malta">
+                <div class="match-header">
+                    <div class="match-title">Finland vs Malta</div>
+                    <div class="match-date">2025-11-14</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Helsinki
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Finland</div>
+                        <input type="number" class="score-input" id="home_WCQG17" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Malta</div>
+                        <input type="number" class="score-input" id="away_WCQG17" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQG17', 'Finland', 'Malta')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="poland netherlands">
+                <div class="match-header">
+                    <div class="match-title">Poland vs Netherlands</div>
+                    <div class="match-date">2025-11-14</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Warsaw
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Poland</div>
+                        <input type="number" class="score-input" id="home_WCQG18" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Netherlands</div>
+                        <input type="number" class="score-input" id="away_WCQG18" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQG18', 'Poland', 'Netherlands')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="croatia faroe islands">
+                <div class="match-header">
+                    <div class="match-title">Croatia vs Faroe Islands</div>
+                    <div class="match-date">2025-11-14</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Rijeka
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Croatia</div>
+                        <input type="number" class="score-input" id="home_WCQL17" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Faroe Islands</div>
+                        <input type="number" class="score-input" id="away_WCQL17" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQL17', 'Croatia', 'Faroe Islands')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="gibraltar montenegro">
+                <div class="match-header">
+                    <div class="match-title">Gibraltar vs Montenegro</div>
+                    <div class="match-date">2025-11-14</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Gibraltar
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Gibraltar</div>
+                        <input type="number" class="score-input" id="home_WCQL18" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Montenegro</div>
+                        <input type="number" class="score-input" id="away_WCQL18" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQL18', 'Gibraltar', 'Montenegro')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture scotland" data-teams="greece scotland">
+                <div class="match-header">
+                    <div class="match-title">Greece vs Scotland</div>
+                    <div class="match-date">2025-11-15</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Paraeus
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Greece</div>
+                        <input type="number" class="score-input" id="home_WCQC09" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Scotland</div>
+                        <input type="number" class="score-input" id="away_WCQC09" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQC09', 'Greece', 'Scotland')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="denmark belarus">
+                <div class="match-header">
+                    <div class="match-title">Denmark vs Belarus</div>
+                    <div class="match-date">2025-11-15</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Copenhagen
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Denmark</div>
+                        <input type="number" class="score-input" id="home_WCQC10" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Belarus</div>
+                        <input type="number" class="score-input" id="away_WCQC10" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQC10', 'Denmark', 'Belarus')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="slovenia kosovo">
+                <div class="match-header">
+                    <div class="match-title">Slovenia vs Kosovo</div>
+                    <div class="match-date">2025-11-15</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Ljubljana
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Slovenia</div>
+                        <input type="number" class="score-input" id="home_WCQB09" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Kosovo</div>
+                        <input type="number" class="score-input" id="away_WCQB09" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQB09', 'Slovenia', 'Kosovo')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="switzerland sweden">
+                <div class="match-header">
+                    <div class="match-title">Switzerland vs Sweden</div>
+                    <div class="match-date">2025-11-15</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Geneva
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Switzerland</div>
+                        <input type="number" class="score-input" id="home_WCQB10" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Sweden</div>
+                        <input type="number" class="score-input" id="away_WCQB10" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQB10', 'Switzerland', 'Sweden')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="georgia spain">
+                <div class="match-header">
+                    <div class="match-title">Georgia vs Spain</div>
+                    <div class="match-date">2025-11-15</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Tbilisi
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Georgia</div>
+                        <input type="number" class="score-input" id="home_WCQE09" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Spain</div>
+                        <input type="number" class="score-input" id="away_WCQE09" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQE09', 'Georgia', 'Spain')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="türkiye bulgaria">
+                <div class="match-header">
+                    <div class="match-title">Türkiye vs Bulgaria</div>
+                    <div class="match-date">2025-11-15</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Bursa
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Türkiye</div>
+                        <input type="number" class="score-input" id="home_WCQE10" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Bulgaria</div>
+                        <input type="number" class="score-input" id="away_WCQE10" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQE10', 'Türkiye', 'Bulgaria')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="cyprus austria">
+                <div class="match-header">
+                    <div class="match-title">Cyprus vs Austria</div>
+                    <div class="match-date">2025-11-15</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Limassol
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Cyprus</div>
+                        <input type="number" class="score-input" id="home_WCQH17" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Austria</div>
+                        <input type="number" class="score-input" id="away_WCQH17" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQH17', 'Cyprus', 'Austria')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="bosnia and herzegovina romania">
+                <div class="match-header">
+                    <div class="match-title">Bosnia and Herzegovina vs Romania</div>
+                    <div class="match-date">2025-11-15</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Zenica
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Bosnia and Herzegovina</div>
+                        <input type="number" class="score-input" id="home_WCQH18" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Romania</div>
+                        <input type="number" class="score-input" id="away_WCQH18" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQH18', 'Bosnia and Herzegovina', 'Romania')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="kazakhstan belgium">
+                <div class="match-header">
+                    <div class="match-title">Kazakhstan vs Belgium</div>
+                    <div class="match-date">2025-11-15</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Astana
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Kazakhstan</div>
+                        <input type="number" class="score-input" id="home_WCQJ17" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Belgium</div>
+                        <input type="number" class="score-input" id="away_WCQJ17" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQJ17', 'Kazakhstan', 'Belgium')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="liechtenstein wales">
+                <div class="match-header">
+                    <div class="match-title">Liechtenstein vs Wales</div>
+                    <div class="match-date">2025-11-15</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Vaduz
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Liechtenstein</div>
+                        <input type="number" class="score-input" id="home_WCQJ18" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Wales</div>
+                        <input type="number" class="score-input" id="away_WCQJ18" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQJ18', 'Liechtenstein', 'Wales')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="ukraine iceland">
+                <div class="match-header">
+                    <div class="match-title">Ukraine vs Iceland</div>
+                    <div class="match-date">2025-11-16</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Warsaw
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Ukraine</div>
+                        <input type="number" class="score-input" id="home_WCQD11" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Iceland</div>
+                        <input type="number" class="score-input" id="away_WCQD11" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQD11', 'Ukraine', 'Iceland')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="azerbaijan france">
+                <div class="match-header">
+                    <div class="match-title">Azerbaijan vs France</div>
+                    <div class="match-date">2025-11-16</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Baku
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Azerbaijan</div>
+                        <input type="number" class="score-input" id="home_WCQD12" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">France</div>
+                        <input type="number" class="score-input" id="away_WCQD12" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQD12', 'Azerbaijan', 'France')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="portugal armenia">
+                <div class="match-header">
+                    <div class="match-title">Portugal vs Armenia</div>
+                    <div class="match-date">2025-11-16</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Porto
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Portugal</div>
+                        <input type="number" class="score-input" id="home_WCQF11" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Armenia</div>
+                        <input type="number" class="score-input" id="away_WCQF11" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQF11', 'Portugal', 'Armenia')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="hungary republic of ireland">
+                <div class="match-header">
+                    <div class="match-title">Hungary vs Republic of Ireland</div>
+                    <div class="match-date">2025-11-16</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Budapest
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Hungary</div>
+                        <input type="number" class="score-input" id="home_WCQF12" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Republic of Ireland</div>
+                        <input type="number" class="score-input" id="away_WCQF12" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQF12', 'Hungary', 'Republic of Ireland')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="italy norway">
+                <div class="match-header">
+                    <div class="match-title">Italy vs Norway</div>
+                    <div class="match-date">2025-11-16</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Milan
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Italy</div>
+                        <input type="number" class="score-input" id="home_WCQI19" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Norway</div>
+                        <input type="number" class="score-input" id="away_WCQI19" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQI19', 'Italy', 'Norway')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="israel moldova">
+                <div class="match-header">
+                    <div class="match-title">Israel vs Moldova</div>
+                    <div class="match-date">2025-11-16</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Chisinau
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Israel</div>
+                        <input type="number" class="score-input" id="home_WCQI20" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Moldova</div>
+                        <input type="number" class="score-input" id="away_WCQI20" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQI20', 'Israel', 'Moldova')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="serbia latvia">
+                <div class="match-header">
+                    <div class="match-title">Serbia vs Latvia</div>
+                    <div class="match-date">2025-11-16</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Leskovac
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Serbia</div>
+                        <input type="number" class="score-input" id="home_WCQK19" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Latvia</div>
+                        <input type="number" class="score-input" id="away_WCQK19" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQK19', 'Serbia', 'Latvia')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="albania england">
+                <div class="match-header">
+                    <div class="match-title">Albania vs England</div>
+                    <div class="match-date">2025-11-16</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Tirana
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Albania</div>
+                        <input type="number" class="score-input" id="home_WCQK20" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">England</div>
+                        <input type="number" class="score-input" id="away_WCQK20" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQK20', 'Albania', 'England')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="northern ireland luxembourg">
+                <div class="match-header">
+                    <div class="match-title">Northern Ireland vs Luxembourg</div>
+                    <div class="match-date">2025-11-17</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Belfast
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Northern Ireland</div>
+                        <input type="number" class="score-input" id="home_WCQA11" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Luxembourg</div>
+                        <input type="number" class="score-input" id="away_WCQA11" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQA11', 'Northern Ireland', 'Luxembourg')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="germany slovakia">
+                <div class="match-header">
+                    <div class="match-title">Germany vs Slovakia</div>
+                    <div class="match-date">2025-11-17</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Leipzig
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Germany</div>
+                        <input type="number" class="score-input" id="home_WCQA12" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Slovakia</div>
+                        <input type="number" class="score-input" id="away_WCQA12" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQA12', 'Germany', 'Slovakia')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="malta poland">
+                <div class="match-header">
+                    <div class="match-title">Malta vs Poland</div>
+                    <div class="match-date">2025-11-17</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Ta' Qali
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Malta</div>
+                        <input type="number" class="score-input" id="home_WCQG19" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Poland</div>
+                        <input type="number" class="score-input" id="away_WCQG19" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQG19', 'Malta', 'Poland')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="netherlands lithuania">
+                <div class="match-header">
+                    <div class="match-title">Netherlands vs Lithuania</div>
+                    <div class="match-date">2025-11-17</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Amsterdam
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Netherlands</div>
+                        <input type="number" class="score-input" id="home_WCQG20" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Lithuania</div>
+                        <input type="number" class="score-input" id="away_WCQG20" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQG20', 'Netherlands', 'Lithuania')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="finland andorra">
+                <div class="match-header">
+                    <div class="match-title">Finland vs Andorra</div>
+                    <div class="match-date">2025-11-17</div>
+                </div>
+                <div class="match-details">
+                    NL (×10) • Tampere
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Finland</div>
+                        <input type="number" class="score-input" id="home_FR01" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Andorra</div>
+                        <input type="number" class="score-input" id="away_FR01" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('FR01', 'Finland', 'Andorra')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="montenegro croatia">
+                <div class="match-header">
+                    <div class="match-title">Montenegro vs Croatia</div>
+                    <div class="match-date">2025-11-17</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Podgorica
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Montenegro</div>
+                        <input type="number" class="score-input" id="home_WCQL19" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Croatia</div>
+                        <input type="number" class="score-input" id="away_WCQL19" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQL19', 'Montenegro', 'Croatia')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="czechia gibraltar">
+                <div class="match-header">
+                    <div class="match-title">Czechia vs Gibraltar</div>
+                    <div class="match-date">2025-11-17</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Prague
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Czechia</div>
+                        <input type="number" class="score-input" id="home_WCQL20" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Gibraltar</div>
+                        <input type="number" class="score-input" id="away_WCQL20" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQL20', 'Czechia', 'Gibraltar')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture scotland" data-teams="scotland denmark">
+                <div class="match-header">
+                    <div class="match-title">Scotland vs Denmark</div>
+                    <div class="match-date">2025-11-18</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Hampden Park
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Scotland</div>
+                        <input type="number" class="score-input" id="home_WCQC11" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Denmark</div>
+                        <input type="number" class="score-input" id="away_WCQC11" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQC11', 'Scotland', 'Denmark')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="belarus greece">
+                <div class="match-header">
+                    <div class="match-title">Belarus vs Greece</div>
+                    <div class="match-date">2025-11-18</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Copenhagen
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Belarus</div>
+                        <input type="number" class="score-input" id="home_WCQC12" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Greece</div>
+                        <input type="number" class="score-input" id="away_WCQC12" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQC12', 'Belarus', 'Greece')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="sweden slovenia">
+                <div class="match-header">
+                    <div class="match-title">Sweden vs Slovenia</div>
+                    <div class="match-date">2025-11-18</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Solna
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Sweden</div>
+                        <input type="number" class="score-input" id="home_WCQB11" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Slovenia</div>
+                        <input type="number" class="score-input" id="away_WCQB11" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQB11', 'Sweden', 'Slovenia')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="kosovo switzerland">
+                <div class="match-header">
+                    <div class="match-title">Kosovo vs Switzerland</div>
+                    <div class="match-date">2025-11-18</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Pristina
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Kosovo</div>
+                        <input type="number" class="score-input" id="home_WCQB12" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Switzerland</div>
+                        <input type="number" class="score-input" id="away_WCQB12" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQB12', 'Kosovo', 'Switzerland')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="bulgaria georgia">
+                <div class="match-header">
+                    <div class="match-title">Bulgaria vs Georgia</div>
+                    <div class="match-date">2025-11-18</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Sofia
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Bulgaria</div>
+                        <input type="number" class="score-input" id="home_WCQE11" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Georgia</div>
+                        <input type="number" class="score-input" id="away_WCQE11" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQE11', 'Bulgaria', 'Georgia')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="spain türkiye">
+                <div class="match-header">
+                    <div class="match-title">Spain vs Türkiye</div>
+                    <div class="match-date">2025-11-18</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Seville
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Spain</div>
+                        <input type="number" class="score-input" id="home_WCQE12" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Türkiye</div>
+                        <input type="number" class="score-input" id="away_WCQE12" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQE12', 'Spain', 'Türkiye')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="cyprus estonia">
+                <div class="match-header">
+                    <div class="match-title">Cyprus vs Estonia</div>
+                    <div class="match-date">2025-11-18</div>
+                </div>
+                <div class="match-details">
+                    NL (×10) • Larnaca
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Cyprus</div>
+                        <input type="number" class="score-input" id="home_FR04" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Estonia</div>
+                        <input type="number" class="score-input" id="away_FR04" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('FR04', 'Cyprus', 'Estonia')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="faroe islands kazakhstan">
+                <div class="match-header">
+                    <div class="match-title">Faroe Islands vs Kazakhstan</div>
+                    <div class="match-date">2025-11-18</div>
+                </div>
+                <div class="match-details">
+                    NL (×10) • Pula Croatia
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Faroe Islands</div>
+                        <input type="number" class="score-input" id="home_FR06" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Kazakhstan</div>
+                        <input type="number" class="score-input" id="away_FR06" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('FR06', 'Faroe Islands', 'Kazakhstan')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="romania san marino">
+                <div class="match-header">
+                    <div class="match-title">Romania vs San Marino</div>
+                    <div class="match-date">2025-11-18</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Ploiesti
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Romania</div>
+                        <input type="number" class="score-input" id="home_WCQH19" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">San Marino</div>
+                        <input type="number" class="score-input" id="away_WCQH19" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQH19', 'Romania', 'San Marino')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="austria bosnia and herzegovina">
+                <div class="match-header">
+                    <div class="match-title">Austria vs Bosnia and Herzegovina</div>
+                    <div class="match-date">2025-11-18</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Vienna
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Austria</div>
+                        <input type="number" class="score-input" id="home_WCQH20" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Bosnia and Herzegovina</div>
+                        <input type="number" class="score-input" id="away_WCQH20" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQH20', 'Austria', 'Bosnia and Herzegovina')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="wales north macedonia">
+                <div class="match-header">
+                    <div class="match-title">Wales vs North Macedonia</div>
+                    <div class="match-date">2025-11-18</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Cardiff
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Wales</div>
+                        <input type="number" class="score-input" id="home_WCQJ19" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">North Macedonia</div>
+                        <input type="number" class="score-input" id="away_WCQJ19" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQJ19', 'Wales', 'North Macedonia')">
+                    Save Result
+                </button>
+            </div>
+        
+            <div class="fixture" data-teams="belgium liechtenstein">
+                <div class="match-header">
+                    <div class="match-title">Belgium vs Liechtenstein</div>
+                    <div class="match-date">2025-11-18</div>
+                </div>
+                <div class="match-details">
+                    WCQ (×25) • Liege
+                </div>
+                
+                <div class="score-row">
+                    <div class="team">
+                        <div class="team-name">Belgium</div>
+                        <input type="number" class="score-input" id="home_WCQJ20" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                    <div class="vs">-</div>
+                    <div class="team">
+                        <div class="team-name">Liechtenstein</div>
+                        <input type="number" class="score-input" id="away_WCQJ20" 
+                               min="0" max="15" placeholder="0">
+                    </div>
+                </div>
+                
+                <button class="save-btn" onclick="saveResult('WCQJ20', 'Belgium', 'Liechtenstein')">
+                    Save Result
+                </button>
+            </div>
+        
+        </div>
+    </div>
+    
+    <div id="completed" class="tab-content">
+        <input type="text" class="search-box" placeholder="Search teams..." onkeyup="filterFixtures('completed')">
+        <div id="completed-fixtures">
+
+        </div>
+    </div>
+    
+    <div id="saved" class="tab-content">
+        <div id="saved-results">No results saved yet</div>
+    </div>
+    
+    <div class="controls">
+        <button class="control-btn success" onclick="exportResults()">Export All Results</button>
+        <button class="control-btn" onclick="exportScotlandOnly()">Export Scotland Only</button>
+        <button class="control-btn danger" onclick="clearResults()">Clear All Saved</button>
+    </div>
+    
+    <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; font-size: 13px;">
+        <h3>PC Processing Instructions:</h3>
+        <ol>
+            <li>Export results using buttons above</li>
+            <li>On PC: <code>python update_results.py</code></li>
+            <li>Choose option 2 (Add result interactively) for each result</li>
+            <li>Generate new rankings: <code>python enhanced_team_range_analysis.py</code></li>
+            <li>Update mobile report: <code>python simple_mobile_analyzer.py</code></li>
+        </ol>
+        <p><strong>Tip:</strong> You can update just Scotland results for quick analysis, or all results for complete UEFA rankings.</p>
+    </div>
+
+    <script>
+        let savedResults = JSON.parse(localStorage.getItem('uefa_mobile_results') || '[]');
+        
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            
+            if (tabName === 'saved') {
+                updateSavedDisplay();
+            }
+        }
+        
+        function filterFixtures(tabName) {
+            const searchTerm = event.target.value.toLowerCase();
+            const fixtures = document.querySelectorAll(`#${tabName}-fixtures .fixture`);
+            
+            fixtures.forEach(fixture => {
+                const teams = fixture.getAttribute('data-teams');
+                if (teams.includes(searchTerm)) {
+                    fixture.classList.remove('hidden');
+                } else {
+                    fixture.classList.add('hidden');
+                }
+            });
+        }
+        
+        function saveResult(fixtureId, homeTeam, awayTeam) {
+            const homeGoals = document.getElementById('home_' + fixtureId).value;
+            const awayGoals = document.getElementById('away_' + fixtureId).value;
+            
+            if (homeGoals === '' || awayGoals === '') {
+                alert('Please enter both scores');
+                return;
+            }
+            
+            const result = {
+                fixture_id: fixtureId,
+                home_team: homeTeam,
+                away_team: awayTeam,
+                home_goals: parseInt(homeGoals),
+                away_goals: parseInt(awayGoals),
+                result_text: homeTeam + ' ' + homeGoals + '-' + awayGoals + ' ' + awayTeam,
+                timestamp: new Date().toISOString(),
+                is_scotland: homeTeam === 'Scotland' || awayTeam === 'Scotland'
+            };
+            
+            // Remove existing result for this fixture
+            savedResults = savedResults.filter(r => r.fixture_id !== fixtureId);
+            savedResults.push(result);
+            localStorage.setItem('uefa_mobile_results', JSON.stringify(savedResults));
+            
+            // Visual feedback
+            event.target.innerHTML = 'Saved!';
+            event.target.style.background = '#2ecc71';
+            setTimeout(() => {
+                event.target.innerHTML = 'Save Result';
+                event.target.style.background = '#27ae60';
+            }, 2000);
+        }
+        
+        function updateSavedDisplay() {
+            const display = document.getElementById('saved-results');
+            
+            if (savedResults.length === 0) {
+                display.innerHTML = '<p style="text-align: center; color: #666;">No results saved yet</p>';
+                return;
+            }
+            
+            // Group by Scotland vs Others
+            const scotlandResults = savedResults.filter(r => r.is_scotland);
+            const otherResults = savedResults.filter(r => !r.is_scotland);
+            
+            let html = '';
+            
+            if (scotlandResults.length > 0) {
+                html += '<h4 style="color: #005EB8;">Scotland Results (' + scotlandResults.length + ')</h4>';
+                scotlandResults.forEach(result => {
+                    html += `<div style="margin: 5px 0; padding: 8px; background: #e3f2fd; border-radius: 4px; border-left: 3px solid #005EB8;">
+                        <strong>${result.result_text}</strong><br>
+                        <small>Saved: ${new Date(result.timestamp).toLocaleString()}</small>
+                    </div>`;
+                });
+            }
+            
+            if (otherResults.length > 0) {
+                html += '<h4 style="color: #2c3e50;">Other Results (' + otherResults.length + ')</h4>';
+                otherResults.forEach(result => {
+                    html += `<div style="margin: 5px 0; padding: 8px; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #27ae60;">
+                        <strong>${result.result_text}</strong><br>
+                        <small>Saved: ${new Date(result.timestamp).toLocaleString()}</small>
+                    </div>`;
+                });
+            }
+            
+            display.innerHTML = html;
+        }
+        
+        function exportResults() {
+            if (savedResults.length === 0) {
+                alert('No results to export');
+                return;
+            }
+            
+            let text = 'UEFA Mobile Results - All Fixtures:\n\n';
+            savedResults.forEach(result => {
+                text += result.fixture_id + ': ' + result.result_text + '\n';
+            });
+            text += '\nTotal results: ' + savedResults.length + '\n';
+            text += 'Generated: ' + new Date().toLocaleString() + '\n';
+            
+            copyToClipboard(text, 'All results exported!');
+        }
+        
+        function exportScotlandOnly() {
+            const scotlandResults = savedResults.filter(r => r.is_scotland);
+            
+            if (scotlandResults.length === 0) {
+                alert('No Scotland results to export');
+                return;
+            }
+            
+            let text = 'Scotland Results Only:\n\n';
+            scotlandResults.forEach(result => {
+                text += result.fixture_id + ': ' + result.result_text + '\n';
+            });
+            text += '\nScotland results: ' + scotlandResults.length + '\n';
+            
+            copyToClipboard(text, 'Scotland results exported!');
+        }
+        
+        function copyToClipboard(text, successMessage) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert(successMessage);
+                });
+            } else {
+                alert('Copy this text:\n\n' + text);
+            }
+        }
+        
+        function clearResults() {
+            if (confirm('Clear all saved results?')) {
+                localStorage.removeItem('uefa_mobile_results');
+                savedResults = [];
+                updateSavedDisplay();
+                
+                // Reset all form inputs
+                document.querySelectorAll('.score-input').forEach(input => {
+                    input.value = '';
+                });
+                
+                alert('All results cleared!');
+            }
+        }
+        
+        // Load saved results on page load
+        window.onload = function() {
+            // Restore form values from saved results
+            savedResults.forEach(result => {
+                const homeInput = document.getElementById('home_' + result.fixture_id);
+                const awayInput = document.getElementById('away_' + result.fixture_id);
+                if (homeInput) {
+                    homeInput.value = result.home_goals;
+                    awayInput.value = result.away_goals;
+                }
+            });
+        };
+    </script>
+</body>
+</html>

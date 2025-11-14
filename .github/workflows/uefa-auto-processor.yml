@@ -1,0 +1,148 @@
+name: UEFA Mobile Results Auto-Processor
+
+on:
+  # Run every hour
+  schedule:
+    - cron: '0 * * * *'  # Every hour at minute 0
+  
+  # Allow manual triggering
+  workflow_dispatch:
+    inputs:
+      force_process:
+        description: 'Force process all pending results'
+        required: false
+        default: 'false'
+        type: boolean
+
+  # Trigger on push to mobile results
+  push:
+    paths:
+      - 'mobile_results_*.json'
+      - 'mobile/*.json'
+      - 'processed_exports/*.json'
+
+jobs:
+  process-mobile-results:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write  # Needed to commit updated results
+      
+    steps:
+    - name: 🔄 Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Full history for proper git operations
+        
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: 📦 Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: 🔍 Check for Mobile Results
+      id: check_results
+      run: |
+        echo "Checking for mobile results files..."
+        
+        # Check for JSON files in various locations
+        JSON_FILES=$(find . -name "mobile_results_*.json" -o -path "./mobile/*.json" -o -path "./processed_exports/*.json" | head -10)
+        
+        if [ -n "$JSON_FILES" ]; then
+          echo "Found mobile results files:"
+          echo "$JSON_FILES"
+          echo "has_results=true" >> $GITHUB_OUTPUT
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "$JSON_FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+        else
+          echo "No mobile results files found"
+          echo "has_results=false" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: 📱 Process Mobile Results  
+      if: steps.check_results.outputs.has_results == 'true' || github.event.inputs.force_process == 'true'
+      run: |
+        echo "🔄 Processing mobile UEFA results..."
+        python github_mobile_processor.py
+        
+    - name: 📊 Generate Updated Rankings
+      if: steps.check_results.outputs.has_results == 'true' || github.event.inputs.force_process == 'true'
+      run: |
+        echo "📊 Generating FIFA ranking analysis..."
+        python analyze_scotland.py
+        python scotland_uefa_ranking_analysis.py
+        
+    - name: 📱 Update Mobile Reports
+      if: steps.check_results.outputs.has_results == 'true' || github.event.inputs.force_process == 'true'
+      run: |
+        echo "📱 Updating mobile HTML reports..."
+        
+        # Update mobile fixture displays with latest results
+        if [ -f "mobile/uefa_scroll_fixtures.html" ]; then
+          echo "Mobile fixtures updated with latest results"
+        fi
+        
+    - name: 📝 Commit Results
+      if: steps.check_results.outputs.has_results == 'true' || github.event.inputs.force_process == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "UEFA Auto-Processor"
+        
+        # Add all updated files
+        git add uefa_fixtures_data.json
+        git add live_fifa_rankings_*.json
+        git add mobile/
+        git add processed_exports/
+        
+        # Check if there are changes to commit
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "🤖 Auto-update: UEFA results processed $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          git push
+          echo "✅ Results committed and pushed"
+        fi
+        
+    - name: 🧹 Archive Processed Files
+      if: steps.check_results.outputs.has_results == 'true' || github.event.inputs.force_process == 'true'
+      run: |
+        echo "🧹 Archiving processed mobile results..."
+        
+        # Move processed JSON files to archive
+        mkdir -p processed_exports
+        find . -name "mobile_results_*.json" -not -path "./processed_exports/*" -exec mv {} processed_exports/ \;
+        
+        # Rename with timestamp
+        cd processed_exports
+        for file in mobile_results_*.json; do
+          if [ -f "$file" ]; then
+            timestamp=$(date -u '+%Y%m%d_%H%M%S')
+            mv "$file" "processed_${timestamp}_${file}"
+          fi
+        done
+        
+    - name: 📊 Summary Report
+      if: always()
+      run: |
+        echo "## 📊 UEFA Auto-Processor Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Run Time:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+        echo "**Trigger:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "${{ steps.check_results.outputs.has_results }}" == "true" ]; then
+          echo "**Status:** ✅ Mobile results processed" >> $GITHUB_STEP_SUMMARY
+          echo "**Files Processed:**" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.check_results.outputs.files }}" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+        else
+          echo "**Status:** ℹ️ No new mobile results found" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Next scheduled run:** $(date -d '+1 hour' -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
